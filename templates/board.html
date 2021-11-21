@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+        <script>
+        function postContent() {
+            content = $("#my-content").val()
+            author = Math.random().toString(20).substr(2, 10)
+
+            $.ajax({
+                url: '/post',
+                type: 'post',
+                data: {
+                    'content': content,
+                    'author': author
+                },
+                success: function (res) {
+                    let result = res['result']
+                    if (result == "success") {
+                        window.location.reload()
+                    } else {
+                        alert("저장오류!")
+                    }
+                }
+            })
+        }
+
+        function postLike(id) {
+            alert("POST Like!")
+        }
+
+    </script>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../static/css/styles.css" rel="stylesheet"/>
+</head>
+
+
+<body>
+<div class="container border border-dark">
+    <div class="text-center mt-5">
+        <h1>게시판page</h1>
+    </div>
+</div>
+
+
+    <div class="wrap">
+        <h2 class="title">익명게시판</h2>
+        <hr>
+        <div class="card">
+            <h5 class="card-header">새 글 작성</h5>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">글을 작성하세요</label>
+                    <textarea id='my-content' class="form-control" rows="3"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="postContent()">작성하기</button>
+            </div>
+        </div>
+        <hr>
+        {% for d in data %}
+        <div class="card mt-2">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">{{d.author}}</label>
+                    <p>{{d.content}}</p>
+                </div>
+                {{d.created_at}}
+            </div>
+            <div class="card-footer text-muted">
+                <span>좋아요 {{d.like}} 개</span>
+                <button class="btn btn-sm btn-success" onclick="postLike('{{d.id}}')">좋아요</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

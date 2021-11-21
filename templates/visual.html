@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+    <!-- 비주얼 페이지에 대한 설명-->
+    <div class="container border border-dark">
+        <div class="text-center mt-5">
+            <h1>기본그래프</h1>
+        </div>
+    </div>
+
+    <!-- graph  -->
+    <div class="container border border-dark">
+        <div class="row">
+            <div class="col-sm-8">
+                <!-- 범위바 & select box -->
+                <label for="customRange1" class="form-label">확진자수? 시간? x축</label>
+                <input type="range" class="form-range" id="customRange1">
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option selected>Category</option>
+                    <option value="1">Entertain</option>
+                    <option value="2">Music</option>
+                    <option value="3">Howto</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                움직여서 그래프 변화를 보세요
+            </div>
+        </div>
+    </div>
+    <div class='container border border-dark'>
+        <div class="row">
+            <div class="col-sm-8 border border-dark">
+                <h2>2017-2018 Top5 Category</h2>
+                {{ div18 }}
+                {{ script18 }}
+            </div>
+        </div>
+
+
+        </div>
+        <div class="container align-items-center">
+            <p>상관관계 있다.</p>
+            <button type="button" class="btn btn-primary" onclick="location.href='/board'">YES</button>
+            <button type="button" class="btn btn-primary" onclick="location.href='/board'">No</button>
+        </div>
+
+{% endblock %}
