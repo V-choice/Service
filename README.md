@@ -1,3 +1,14 @@
+### docker desktop app 설치
+```
+brew cask install docker
+```
+
+### 가상환경 만들기
+```
+virtualenv venv
+source venv/bin/activate
+```
+
 
 ### sprint로 branch 변경 & 필요한 거 설치 & vsc로 열기
 ```terminal
