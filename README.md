@@ -1,6 +1,6 @@
 ### docker desktop app 설치
 ```
-brew cask install docker
+brew install --cask install docker
 ```
 
 ### 가상환경 만들기
