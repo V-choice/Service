@@ -9,7 +9,7 @@ git clone https://yeardream-gitlab.elice.io/yeardream-project/project-9/service.
 ```zsh
 cd service
 git checkout sprint
-(안되면) git chechout -t origin/remote
+(안되면) git chechout -t origin/sprint
 ```
 
 3. terminal에서 바로 vsc열기
