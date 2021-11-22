@@ -10,14 +10,15 @@ source venv/bin/activate
 ```
 
 
-### sprint로 branch 변경 & 필요한 거 설치 & vsc로 열기
+### 1. sprint로 branch 변경 & 필요한 거 설치 & vsc로 열기
 ```terminal
 git checkout sprint
 pip install -r requirements.txt #안되며 pip3로
 code .
+pytho3 run.py
 ```
 
-### docker로 열기
+### 2.2 docker로 열기
 ```terminal
 docker build . -t docker-image
 docker run --name docker-container -d -p 5000:5000 docker-image
