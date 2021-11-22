@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block scripts %}
+<script>
+    function regist() {
+        let user_id = $("#userId").val()
+        let user_pw = $("#userPw").val()
+        let user_pw2 = $("#userPw2").val()
+
+        if (user_id == '' || user_pw == '') {
+            alert("아이디와 패스워드를 입력 해 주세요");
+            return;
+        }
+
+        if (user_pw != user_pw2) {
+            alert("비밀번호를 확인 해 주세요!")
+            return;
+        }
+
+        $.ajax({
+            url: '/join',
+            type: 'post',
+            data: {
+                'user_id': user_id,
+                'user_pw': user_pw
+            },
+            success: function (res) {
+                if (res['result'] == 'success') {
+                    alert("회원가입 성공!");
+                    window.location.href = '/'
+                }
+            }
+        })
+    }
+</script>
+
+{% endblock %}
+
+{% block content %}
+<h2 class="title">V-choice 회원가입</h2>
+<hr>
+<div class="card">
+    <div class="card-body">
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">ID</label>
+            <div class="col-sm-10">
+                <input type="text" id='userId' class="form-control" placeholder="elice">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="userPw">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Password Check</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="userPw2">
+            </div>
+        </div>
+        <button class="btn btn-primary" onclick=regist()>회원가입하기</button>
+        <a href="/login" class="btn btn-primary">로그인하기</a>
+    </div>
+</div>
+<hr>
+{% endblock %}

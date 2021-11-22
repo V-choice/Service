@@ -1,16 +1,24 @@
-import os
-from bokeh.resources import INLINE
-from flask import Flask, render_template
+from flask import Flask, render_template, request,jsonify
+from models import User, Post
 import pymysql
 from api import board
 from db_connect import db
-
+from flask_bcrypt import Bcrypt
+from bokeh.resources import INLINE
 from module.Beforeafter import Beforeafter
+
 
 app = Flask(__name__)
 app.register_blueprint(board)
 
+
+# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:316452@localhost:3306/mydb"
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app.secret_key = "316452"
+
 db.init_app(app)
+bcrypt = Bcrypt(app)
+
 
 @app.route('/')
 def hello_world():
@@ -35,4 +43,3 @@ def visual():
         css_resources = css_resources
     )
     return html
-
