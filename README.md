@@ -8,7 +8,7 @@ git clone https://yeardream-gitlab.elice.io/yeardream-project/project-9/service.
 2. 클론된 폴더로 이동 & sprint 브랜치로 변경
 ```zsh
 cd service
-git branch sprint
+git checkout sprint
 ```
 
 3. terminal에서 바로 vsc열기
