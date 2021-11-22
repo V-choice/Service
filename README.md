@@ -13,7 +13,7 @@ source venv/bin/activate
 ### sprint로 branch 변경 & 필요한 거 설치 & vsc로 열기
 ```terminal
 git checkout sprint
-pip install -r requirements.txt
+pip install -r requirements.txt #안되며 pip3로
 code .
 ```
 
