@@ -6,7 +6,6 @@ from flask_bcrypt import Bcrypt
 board = Blueprint('board',__name__)
 bcrypt = Bcrypt()
 
-# before_app_request를 이용해 로그인한 사용자를 확인하는 기능을 추가하세요.
 @board.before_app_request
 def load_logged_in_user():
     user_id = session.get('login')
@@ -52,3 +51,27 @@ def login():
 def logout():
     session['login'] = None
     return redirect('/')
+
+@board.route("/post", methods=["DELETE"])
+def delete_post():
+    id = request.form['id']
+    author = request.form['author']
+    data = Post.query.filter(Post.id==id,Post.author==author).first()
+    if data is not None:
+        db.session.delete(data)
+        db.session.commit()
+        return jsonify({'result':'success'})
+    else:
+        return jsonify({'result':'fail'})
+
+@board.route("/post", methods=["PATCH"])
+def update_post():
+    id = request.form['id']
+    content = request.form['content']
+    author = User.query.filter(User.id==session['login']).first()
+    
+    data = Post.query.filter(Post.id==id,Post.author==author.user_id).first()
+    data.content=content
+    db.session.commit()
+    return jsonify({'result':'success'})
+    

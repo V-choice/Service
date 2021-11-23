@@ -12,9 +12,8 @@ app = Flask(__name__)
 app.register_blueprint(board)
 
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:316452@localhost:3306/mydb"
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# app.secret_key = "316452"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123456789@localhost:3306/mydb"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 bcrypt = Bcrypt(app)
