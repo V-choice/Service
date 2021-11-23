@@ -1,76 +1,110 @@
 {% extends 'layout.html' %}
-{% block content %}
+{% block scripts %}
+<script>
+    function postContent() {
+        let content = $("#my-content").val()
+        let author = `{{g.user.user_id}}`
 
-        <script>
-        function postContent() {
-            content = $("#my-content").val()
-            author = Math.random().toString(20).substr(2, 10)
-
-            $.ajax({
-                url: '/post',
-                type: 'post',
-                data: {
-                    'content': content,
-                    'author': author
-                },
-                success: function (res) {
-                    let result = res['result']
-                    if (result == "success") {
-                        window.location.reload()
-                    } else {
-                        alert("저장오류!")
-                    }
+        $.ajax({
+            url: '/post',
+            type: 'post',
+            data: {
+                'content': content,
+                'author': author
+            },
+            success: function (res) {
+                let result = res['result']
+                if (result == "success") {
+                    window.location.reload()
+                } else {
+                    alert("저장오류!")
                 }
-            })
-        }
+            }
+        })
+    }
 
-        function postLike(id) {
-            alert("POST Like!")
-        }
+    function deletePost(id) {
+        let author = `{{g.user.user_id}}`
+        $.ajax({
+            url: '/post',
+            type: 'DELETE',
+            data: {
+                'id': id,
+                'author': author
+            },
+            success: function (res) {
+                if (res['result'] == 'success') {
+                    alert("삭제 성공!")
+                    window.location.reload()
+                } else {
+                    alert("삭제 실패!")
+                }
+            }
+        })
+    }
+    function postUpdatePost(id) {
+        let content = $(`#userEidContent${id}`).val()
+        $.ajax({
+            url: '/post',
+            type: 'PATCH',
+            data: {
+                "id": id,
+                "content": content
+            },
+            success: function (res) {
+                if (res['result'] == 'success') {
+                    alert("수정성공")
+                    window.location.reload()
+                }
+            }
+        })
+    }
+    function updatePost(id) {
+        let content = $(`#userContent${id}`).text()
+        let tmpHtml = `<textarea id=userEidContent${id} class="form-control" rows="3"></textarea>`
+        let tmpBtn = `<button class="btn btn-sm btn-success" onclick="postUpdatePost(${id})">수정완료</button>`
+        $("#edit-area").empty()
+        $("#edit-area").append(tmpHtml)
+        $(`#editBtn${id}`).hide()
+        $(`#userEidContent${id}`).val(content)
+        $("#edit-area").append(tmpBtn)
 
-    </script>
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../static/css/styles.css" rel="stylesheet"/>
-</head>
+    }
+</script>
+{% endblock %}
 
-
-<body>
-<div class="container border border-dark">
-    <div class="text-center mt-5">
-        <h1>게시판page</h1>
+{% block content %}
+<h2 class="title">V-choice 게시판</h2>
+<hr>
+<div class="card">
+    <h5 class="card-header">게시판</h5>
+    <div class="card-body">
+        <div class="mb-3">
+            <label class="form-label">{{g.user.user_id}}님, 글을 작성하세요</label>
+            <textarea id='my-content' class="form-control" rows="3"></textarea>
+        </div>
+        <button class="btn btn-primary" onclick="postContent()">작성하기</button>
     </div>
 </div>
+<hr>
 
-
-    <div class="wrap">
-        <h2 class="title">익명게시판</h2>
-        <hr>
-        <div class="card">
-            <h5 class="card-header">새 글 작성</h5>
-            <div class="card-body">
-                <div class="mb-3">
-                    <label class="form-label">글을 작성하세요</label>
-                    <textarea id='my-content' class="form-control" rows="3"></textarea>
-                </div>
-                <button class="btn btn-primary" onclick="postContent()">작성하기</button>
+{% for post in post_list %}
+<div class="card mt-2">
+    <div class="card-body">
+        <div class="mb-3">
+            <label class="form-label">{{post.author}}&nbsp;&nbsp;&nbsp;&nbsp;</label><a>{{post.created_at}}</a>
+            <div id='edit-area'>
+                <p id='userContent{{post.id}}'>{{post.content}}</p>
             </div>
         </div>
-        <hr>
-        {% for d in data %}
-        <div class="card mt-2">
-            <div class="card-body">
-                <div class="mb-3">
-                    <label class="form-label">{{d.author}}</label>
-                    <p>{{d.content}}</p>
-                </div>
-                {{d.created_at}}
-            </div>
-            <div class="card-footer text-muted">
-                <span>좋아요 {{d.like}} 개</span>
-                <button class="btn btn-sm btn-success" onclick="postLike('{{d.id}}')">좋아요</button>
-            </div>
-        </div>
-        {% endfor %}
     </div>
 
+
+    <div class="card-footer text-muted">
+        <button class="btn btn-sm btn-warning" onclick="deletePost('{{post.id}}')">삭제하기</button>
+        <button id='editBtn{{post.id}}' class="btn btn-sm btn-success" onclick="updatePost('{{post.id}}')">수정하기</button>
+    </div>
+    
+</div>
+{% endfor %}
 {% endblock %}

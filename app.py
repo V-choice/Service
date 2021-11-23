@@ -14,6 +14,8 @@ app.register_blueprint(board)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123456789@localhost:3306/mydb"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SESSION_TYPE'] = 'filesystem'
+app.secret_key = 'super secret key'
 
 db.init_app(app)
 bcrypt = Bcrypt(app)
@@ -23,9 +25,10 @@ bcrypt = Bcrypt(app)
 def hello_world():
     return render_template('index.html')
 
-@app.route('/board')
-def board():
-    return render_template('board.html')
+
+@app.route('/aboutus')
+def aboutus():
+    return render_template('aboutus.html')
 
 @app.route('/visual')
 def visual():

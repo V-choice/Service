@@ -20,7 +20,6 @@ class Post(db.Model):
                    nullable=False, autoincrement=True)
     author = db.Column(db.String(256), nullable=False)
     content = db.Column(db.Text(), nullable=False)
-    like=db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __init__(self,author,content):

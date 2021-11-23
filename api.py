@@ -2,9 +2,14 @@ from flask import redirect, request, render_template, jsonify, Blueprint, sessio
 from models import User, Post
 from db_connect import db
 from flask_bcrypt import Bcrypt
+import datetime
+
+now = datetime.datetime.utcnow
 
 board = Blueprint('board',__name__)
 bcrypt = Bcrypt()
+
+
 
 @board.before_app_request
 def load_logged_in_user():
@@ -52,6 +57,20 @@ def logout():
     session['login'] = None
     return redirect('/')
 
+@board.route("/post", methods=["GET","POST"])
+def post():
+    if request.method == 'GET':
+        data = Post.query.all() #나중에 order_by(like_cnt)
+        return render_template("board.html", post_list = data)
+    else:
+        content = request.form['content']
+        author = request.form['author']
+        post = Post(author,content)
+        db.session.add(post)
+        db.session.commit()
+        return jsonify({"result":"success"})
+
+        
 @board.route("/post", methods=["DELETE"])
 def delete_post():
     id = request.form['id']
@@ -63,6 +82,7 @@ def delete_post():
         return jsonify({'result':'success'})
     else:
         return jsonify({'result':'fail'})
+
 
 @board.route("/post", methods=["PATCH"])
 def update_post():
