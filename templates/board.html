@@ -70,48 +70,65 @@
         $("#edit-area").append(tmpBtn)
 
     }
+    
 
     
 </script>
 {% endblock %}
 
 {% block content %}
-<h2 class="title">V-choice 게시판</h2>
+<!-- yes/no container -->
+<div class="container"  style='height: 400px;'>
+    <div class="row">
+        <div class="col-sm-8">
+            yes/no graph
+        </div>
+        <div class="col-sm-4">
+            통계 말로 설명
+        </div>
+    </div>
+</div>
+<!-- post container -->
+<div class="container">
+    <div class="row">
 <hr>
-<div class="card">
-    <h5 class="card-header">게시판</h5>
+<div class="card" style='border:none;'>
     <div class="card-body">
         <div class="mb-3">
-            <label class="form-label">{{g.user.user_id}}님, 글을 작성하세요</label>
-            <textarea id='my-content' class="form-control" rows="3"></textarea>
+            <input id='my-content' class="inp mb-3" placeholder="느낀점을 다른사람과 공유해 보세요👍">
         </div>
-        <button class="btn btn-primary" onclick="postContent()">작성하기</button>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-secondary me-md-2" onclick="postContent()">댓글</button>
+        </div>
     </div>
 </div>
 <hr>
 
 {% for post in post_list %}
-<div class="card mt-2">
+
+<div class="card mt-2" style='border:none;'>
     <div class="card-body">
         <div class="mb-3">
-            <label class="form-label">{{post.author}}&nbsp;&nbsp;&nbsp;&nbsp;</label><a>{{post.created_at}}</a>
+            <label class="form-label">{{post.author}}&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <a>{{now - post.created_at}} ago</a>
             <div id='edit-area'>
                 <p id='userContent{{post.id}}'>{{post.content}}</p>
             </div>
             <button id="thumbs-up-button">
                 <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M18.77 11h-4.23l1.52-4.94C16.38 5.03 15.54 4 14.38 4c-.58 0-1.14.24-1.52.65L7 11H3v10h14.43c1.06 0 1.98-.67 2.19-1.61l1.34-6c.27-1.24-.78-2.39-2.19-2.39ZM7 20H4v-8h3v8Zm12.98-6.83-1.34 6c-.1.48-.61.83-1.21.83H8v-8.61l5.6-6.06c.19-.21.48-.33.78-.33.26 0 .5.11.63.3.07.1.15.26.09.47l-1.52 4.94-.4 1.29h5.58c.41 0 .8.17 1.03.46.13.15.26.4.19.71Z" fill="#fff"/></svg>
-
             </button>
+            <a>좋아요 한 사람 숫자</a>
         </div>
     </div>
-
 
     <div class="card-footer text-muted">
         <button class="btn btn-sm btn-warning" onclick="deletePost('{{post.id}}')">삭제하기</button>
         <button id='editBtn{{post.id}}' class="btn btn-sm btn-success" onclick="updatePost('{{post.id}}')">수정하기</button>
     </div>
-    
 </div>
+
 {% endfor %}
+</div>
+</div>
 {% endblock %}
