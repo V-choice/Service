@@ -58,7 +58,7 @@
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
-  --bs-body-font-size: 1.3em;
+  --bs-body-font-size: 1em;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
@@ -11402,4 +11402,19 @@ section > h2 {
   width: 100%;
   height: calc(100% - 80px);
   object-fit: cover;
+}
+
+
+/* 게시판 comment 속성 */
+.inp {
+  border:none;
+  border-bottom: 1px solid #51585e;
+  padding: 5px 10px;
+  outline: none;
+  width: 100%;
+  height: 24px;
+}
+
+.inp:focus{
+  border-bottom:2px solid #000;
 }
