@@ -8,6 +8,8 @@ class User(db.Model):
                    nullable=False, autoincrement=True)
     user_id = db.Column(db.String(100), nullable=False, unique=True)
     user_pw = db.Column(db.String(100), nullable=False)
+    first_choice = db.Column(db.Integer)
+    second_choice = db.Column(db.Integer)
 
     def __init__(self, user_id, user_pw):
         self.user_id = user_id
@@ -22,6 +24,8 @@ class Post(db.Model):
     content = db.Column(db.Text(), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+
     def __init__(self,author,content):
         self.author = author
         self.content = content
+
