@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,jsonify
+from flask import Flask, render_template, request,jsonify, session
 from models import User, Post
 import pymysql
 from api import board
@@ -23,7 +23,19 @@ bcrypt = Bcrypt(app)
 
 @app.route('/')
 def hello_world():
+    # if request.method == 'POST':
+    #     if request.args.get('first_choice') == 'yes':
+    #         first_choice = 1
+    #     else:
+    #         first_choice = 0
+    #     user = User.first_choice(first_choice)
+    #     db.session.add(user)
+    #     db.session.commit()
     return render_template('index.html')
+
+# @app.route('/',methods=['PATCH'])
+# def first_choice():
+#     if User.query.filter(User.id==session['login']).first() is not None:
 
 
 @app.route('/aboutus')
