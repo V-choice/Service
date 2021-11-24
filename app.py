@@ -2,6 +2,7 @@ from flask import Flask, render_template, request,jsonify, session
 from models import User, Post
 import pymysql
 from api import board
+from api_visual import visual
 from db_connect import db
 from flask_bcrypt import Bcrypt
 from bokeh.resources import INLINE
@@ -10,7 +11,7 @@ from module.Beforeafter import Beforeafter
 
 app = Flask(__name__)
 app.register_blueprint(board)
-
+app.register_blueprint(visual)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123456789@localhost:3306/mydb"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
