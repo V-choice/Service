@@ -82,25 +82,49 @@
 
   <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">원하는 데이터를 선택하여 다각도로 비교해보세요</h1>          
+      <h1 class="h2">원하는 데이터를 선택하여 다양하게 비교해보세요 (유튜브 Data : 전체 Youtube Trending 영상)</h1>          
     </div>
-    <div style='text-align:center;'>
-        <form action="/multi-analysis" method="POST">
-            <span>
-                코로나 data - 번호 입력<br>
-                <input type="text" name="selection_1_num" style="text-align:center; width:50px; height:50px"/><br><br>
-            </span>
-            <span>
-                Youtube data - 번호 입력<br>
-                <input type="text" name="selection_2_num" style="text-align:center; width:50px; height:50px"/><br><br>
-            </span>
-            <span>
-                원하는 카테고리 ID 입력 (숫자)<br><br>
-                <input type="text" name="category_id" style="text-align:center; width:50px; height:50px"/><br>
-                <input type="submit" value="선택" /><br><br>
-            </span>
-        </form>
-        </form>
+    <div style="text-align:center;">
+      <form action="/multi-analysis" method="POST">
+        <select name="category_id" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="text-align:center;">
+          <option selected> ------------------카테고리를 선택하세요------------------ </option>
+          <option value="0">전체 카테고리 평균</option>
+          <option value="1">영화 & 애니</option>
+          <option value="2">자동차</option>
+          <option value="10">음악</option>
+          <option value="15">동물</option>
+          <option value="17">스포츠</option>
+          <option value="19">여행</option>
+          <option value="20">게임</option>
+          <option value="22">Vlog & 개인방송</option>
+          <option value="23">코미디</option>
+          <option value="24">예능</option>
+          <option value="25">뉴스 & 정치</option>
+          <option value="26">노하우 & 미용</option>
+          <option value="27">교육</option>
+          <option value="28">과학 & 기술</option>
+          <option value="29">비영리단체 & 정부기관</option>
+        </select>
+        <select name="selection_1_num" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="text-align:center;">
+          <option selected> -----코로나 Data 중 비교하고 싶은 값을 선택하세요----- </option>
+          <option value="1">일일 국내 확진자</option>
+          <option value="2">일일 해외 유입</option>
+          <option value="3">일일 사망자</option>
+          <option value="4">누적 사망자</option>
+          <option value="5">일일 확진자(국내+해외)</option>
+          <option value="6">누적 확진자</option>
+          <option value="7">확진자 증감 변화량</option>
+        </select>
+        <select name="selection_2_num" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="text-align:center;">
+          <option selected> -----유튜브 Data 중 비교하고 싶은 값을 선택하세요----- </option>
+          <option value="1">조회수</option>
+          <option value="2">좋아요 수</option>
+          <option value="3">싫어요 수</option>
+          <option value="4">댓글 수</option>
+          <option value="5">좋아요 비율</option>
+        </select>
+        <button class="btn btn-primary" type="submit">선택</button>
+      </form>
     </div>
     {% if msg %}
         <script>
@@ -110,61 +134,6 @@
             <p> <mark><strong>{{msg}}</strong></mark> </p>
         </div>
     {% endif %}
-
-    <div class="table-responsive">
-      <table class="table table-striped table-sm">
-        <thead>
-          <tr>
-            <th scope="col">번호</th>
-            <th scope="col">코로나 Data</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for idx, value in enumerate(corona_col_list) %}
-          <tr>
-            <td>{{ idx+1 }}</td>
-            <td>{{ value }}</td>
-          {% endfor %}
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">번호</th>
-              <th scope="col">유튜브 Data</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for idx,value in enumerate(youtube_col_list) %}
-            <tr>
-              <td>{{ idx+1 }}</td>
-              <td>{{ value }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-      <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">ID_#</th>
-              <th scope="col">종류</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for key, value in category_list.items() %}
-            <tr>
-              <td>{{ key }}</td>
-              <td>{{ value }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
   </main>
 </div>
 
