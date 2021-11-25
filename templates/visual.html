@@ -1,4 +1,64 @@
 {% extends 'layout.html' %} {% block content %}
+<script>
+    function postChoice_yes(){
+        let second_choice_yes=$("#second_choice_yes").val()
+        let user = `{{g.user.user_id}}`
+
+        second_choice=second_choice_yes
+
+        $.ajax({
+            url:'/second_choice',
+            type:'post',
+            data:{
+                'second_choice':second_choice,
+                'user':user
+            },
+            success:function(res){
+                let result = res['result']
+                if (result=="success"){
+                    alert('두번째 답변 저장 완료')
+                    window.location.href='/post'
+                }else if(result=='fail'){
+                    alert('이미 답변을 하셨습니다')
+                    window.location.href='/post'
+                }else{
+                    alert('로그인 아직 안하셨네요?')
+                    window.location.href='/join'
+                }
+            }
+        })
+    }
+
+    function postChoice_no(){
+        let second_choice_no=$("#second_choice_no").val()
+        let user = `{{g.user.user_id}}`
+
+        second_choice=second_choice_no
+        
+        $.ajax({
+            url:'/second_choice',
+            type:'post',
+            data:{
+                'second_choice':second_choice,
+                'user':user
+            },
+            success:function(res){
+                let result = res['result']
+                if (result=="success"){
+                    alert('두번째 답변 저장 완료')
+                    window.location.href='/post'
+                }else if(result=='fail'){
+                    alert('이미 답변을 하셨습니다')
+                    window.location.href='/post'
+                }else{
+                    alert('로그인 아직 안하셨네요?')
+                    window.location.href='/join'
+                }
+            }
+        })
+    }
+
+</script>
 
 <!-- 비주얼 페이지에 대한 설명-->
 <div class="container border border-dark">
@@ -6,28 +66,34 @@
         <h3>Youtube Trending 영상을 통해 코로나 전후의 변화를 찾아보세요!</h3>
     </div>
 </div>
-
-<div>
-    <a href="/vid-cnt" onclick="alert('카테고리별 영상 수를 확인 할 수 있습니다')">Trending Video 갯수 변화</a>
-</div>
-<div>
-    <a href="/comp-mean-views" onclick="alert('카테고리별 평균 조회수를 확인 할 수 있습니다')">Video 조회 수 변화</a>
-</div>
-<div>
-    <a href="/ratio-ch-vid" onclick="alert('각 카테고리의 영상 비중 및 인기순위을 조회할 수 있습니다')">Trending Video 카테고리 비율 변화</a>
-</div>
-<div>
-    <a href="/multi-analysis" onclick="alert('코로나 데이터와 Youtube Trending 데이터를 \n자유롭게 선택하여 비교할 수 있습니다')">Corona & Youtube Trending 다각도 비교</a>
-</div>
-<div>
-    <a href="/corona-related-multi-analysis" onclick="alert('유튜브 제목과 태그에서 코로나 관련 단어를 추출하여\n연관된 비교분석이 가능합니다')">코로나 연관 단어가 들어간 유튜브 영상과의 비교 </a>
+<div class="container border border-dark">
+    <div class="row">
+        graph
+    </div>
+        <div class="col-sm-4">
+            <div>
+                <img src="./static/image/youtube.png" width="169" height="94">
+                <a href="/vid-cnt" onclick="alert('카테고리별 영상 수를 확인 할 수 있습니다')">Trending Video 갯수 변화</a>
+            </div>
+            <div>
+                <a href="/comp-mean-views" onclick="alert('카테고리별 평균 조회수를 확인 할 수 있습니다')">Video 조회 수 변화</a>
+            </div>
+            <div>
+                <a href="/ratio-ch-vid" onclick="alert('각 카테고리의 영상 비중 및 인기순위을 조회할 수 있습니다')">Trending Video 카테고리 비율 변화</a>
+            </div>
+            <div>
+                <a href="/multi-analysis" onclick="alert('코로나 데이터와 Youtube Trending 데이터를 \n자유롭게 선택하여 비교할 수 있습니다')">Corona & Youtube Trending 다각도 비교</a>
+            </div>
+            <div>
+                <a href="/corona-related-multi-analysis" onclick="alert('유튜브 제목과 태그에서 코로나 관련 단어를 추출하여\n연관된 비교분석이 가능합니다')">코로나 연관 단어가 들어간 유튜브 영상과의 비교 </a>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- <div>
     <a href="/board" onclick="alert('통계분석 이후 자신만의 아이디어를 공유해보세요')"> 토론 게시판으로 이동!</a>
 </div> -->
-
-
 
 <!-- graph  -->
 <div class="container border border-dark">
@@ -48,51 +114,11 @@
         </div>
     </div>
 </div>
-<div class='container border border-dark'>
-    <div class="row">
-        <div class="col-sm-8 border border-dark">
-            <h2>2017-2018 Top5 Category</h2>
-            {{ div18 }} {{ script18 }}
-        </div>
-    </div>
-</div>
-<div class='container border border-dark'>
-    <div class="row">
-        <div class="col-sm-8 border border-dark">
-            <h3>카테고리별 영상 수 그래프</h3>
-            {{ div18 }} {{ script18 }}
-        </div>
-    </div>
-</div>
-<div class='container border border-dark'>
-    <div class="row">
-        <div class="col-sm-8 border border-dark">
-            <h3>2017-2018 Top5 Category</h3>
-            {{ div18 }} {{ script18 }}
-        </div>
-    </div>
-</div>
-<div class='container border border-dark'>
-    <div class="row">
-        <div class="col-sm-8 border border-dark">
-            <h3>2017-2018 Top5 Category</h3>
-            {{ div18 }} {{ script18 }}
-        </div>
-    </div>
-</div>
-<div class='container border border-dark'>
-    <div class="row">
-        <div class="col-sm-8 border border-dark">
-            <h3>2017-2018 Top5 Category</h3>
-            {{ div18 }} {{ script18 }}
-        </div>
-    </div>
-</div>
 
-<div class="container align-items-center">
-    <p>상관관계 있다.</p>
-    <button type="button" class="btn btn-primary" onclick="location.href='/post'">YES</button>
-    <button type="button" class="btn btn-primary" onclick="location.href='/post'">No</button>
-</div>
 
+<p>여전히 상관관계가 있다고 생각하시면 'YES'를</p>
+<p>아니라면 'NO'를 눌러주세요</p>
+<input id='second_choice_yes' type="button" class="btn btn-primary" onclick="postChoice_yes()" value="YES"></button>
+<input id='second_choice_no' type="button" class="btn btn-primary" onclick="postChoice_no()" value="NO"></button>
+</div>
 {% endblock %}

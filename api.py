@@ -31,7 +31,7 @@ def join():
             db.session.commit()
             return jsonify({"result":"success"})
     else:
-        return redirect('/visual')
+        return redirect('/')
 
 @board.route('/login',methods = ['GET','POST'])
 def login():
@@ -57,12 +57,39 @@ def logout():
     session['login'] = None
     return redirect('/')
 
+def choice_data():
+    data = User.query.all()
+    first_yes,first_no,second_yes,second_no = [],[],[],[]
+    for user in data:
+        if user.first_choice == 'YES':
+            first_yes.append(user.user_id)
+        else:
+            first_no.append(user.user_id)
+        if user.second_choice == 'YES':
+            second_yes.append(user.user_id)
+        else:
+            second_no.append(user.user_id)
+    return first_yes,first_no,second_yes,second_no
+
 @board.route("/post", methods=["GET","POST"])
 def post():
         if request.method == 'GET':
             data = Post.query.all() #나중에 order_by(like_cnt)
             now = datetime.now()
-            return render_template("board.html", post_list = data, now=now)
+            choice_data = User.query.all()
+            first_yes,first_no,second_yes,second_no = [],[],[],[]
+            for user in choice_data:
+                if user.first_choice == 'YES':
+                    first_yes.append(user.user_id)
+                else:
+                    first_no.append(user.user_id)
+                if user.second_choice == 'YES':
+                    second_yes.append(user.user_id)
+                else:
+                    second_no.append(user.user_id)
+            return render_template("board.html"\
+                , post_list = data, now=now, \
+                    first_yes=first_yes,first_no=first_no,second_yes=second_yes,second_no=second_no)
         else:
             content = request.form['content']
             author = request.form['author']

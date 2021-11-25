@@ -10,13 +10,13 @@ import base64
 from io import BytesIO
 
 #시각화
-import matplotlib.pyplot as plt
 import matplotlib.dates as md
 from matplotlib.figure import Figure
-import seaborn as sns
+# import seaborn as sns
 from bokeh.plotting import figure
 from bokeh import *
 from bokeh.embed import components
+import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 visual = Blueprint('visual', __name__)

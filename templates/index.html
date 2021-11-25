@@ -1,5 +1,61 @@
 {% extends 'layout.html' %} {% block content %}
+<script>
+    function postChoice_yes(){
+        let first_choice_yes=$("#first_choice_yes").val()
+        let user = `{{g.user.user_id}}`
 
+        first_choice = first_choice_yes
+        $.ajax({
+            url:'/first_choice',
+            type:'post',
+            data:{
+                'first_choice':first_choice,
+                'user':user
+            },
+            success:function(res){
+                let result = res['result']
+                if (result=="success"){
+                    alert('첫번째 답변 저장 완료')
+                    window.location.href='/visual'
+                }else if(result=='fail'){
+                    alert('이미 답변을 하셨습니다')
+                    window.location.href='/visual'
+                }else{
+                    alert('로그인하러 가실까요?')
+                    window.location.href='/join'
+                }
+            }
+        })
+    }
+
+    function postChoice_no(){
+        let first_choice_no=$("#first_choice_no").val()
+        let user = `{{g.user.user_id}}`
+
+        first_choice = first_choice_no
+        $.ajax({
+            url:'/first_choice',
+            type:'post',
+            data:{
+                'first_choice':first_choice,
+                'user':user
+            },
+            success:function(res){
+                let result = res['result']
+                if (result=="success"){
+                    alert('첫번째 답변 저장 완료')
+                    window.location.href='/visual'
+                }else if(result=='fail'){
+                    alert('이미 답변을 하셨습니다')
+                    window.location.href='/visual'
+                }else{
+                    alert('로그인하러 가실까요?')
+                    window.location.href='/join'
+                }
+            }
+        })
+    }
+</script>
 
 <div class='container'>
     <div class='row'>
@@ -34,7 +90,7 @@
       <h6 class= "text-right text-muted mr-3 wow fadeInUp" style="color: #5f5e5e;"> 
           코로나로 늘어난 '집콕족', 그들이 선택한
       </h6>
-      <img class="mr-3 ml-2 wow fadeInUp" src="/image/youtube.png" style="width: 70px; height: 55px; float: right;" alt="...">
+      <img class="mr-3 ml-2 wow fadeInUp" src="./static/image/youtube.png" style="width: 70px; height: 55px; float: right;" alt="...">
       <h1 class="text-right wow fadeInUp" style="margin-right: 80px;">
         YOUTUBE
       </h1>
@@ -42,13 +98,13 @@
         실내에서 즐길 수 있는 OTT 서비스 이용이 급증했다.
       </h5>
       <div class="row wow fadeInUp">
-        <image src="/image/corona12.png" style="max-width: 100%; height: auto;" alt="..."></image>
+        <image src="./static/image/corona12.png" style="max-width: 100%; height: auto;" alt="..."></image>
       </div>
       <h5 class="text-muted wow fadeInUp" style="text-align: center; line-height: 2rem; color: #5f5e5e;">
         국내 OTT 시장을 장악하고 있는 유튜브<br> 유튜브는 코로나를 얼마나 담고 있을까
       </h5>
       <div class="wow fadeInUp" style="text-align: center;">
-        <img class="img-responsive" src="/image/ottUtilization.png" style="width: 500px; height: 400px;" alt="...">
+        <img class="img-responsive" src="./static/image/ottUtilization.png" style="width: 500px; height: 400px;" alt="...">
       </div>
 </div>
 
@@ -78,8 +134,10 @@
     </div>
 </div>
 
-<p>상관관계 있다.</p>
-<input name='first_choice' type="button" class="btn btn-primary" onclick="location.href='/join'">YES</button>
-<input name='first_choice' type="button" class="btn btn-primary" onclick="location.href='/join'">No</button>
+<p>위의 내용을 보고 상관관계가 있다고 생각하시면 'YES'를</p>
+<p>아니라면 'NO'를 눌러주세요</p>
+
+<input id='first_choice_yes' type="button" class="btn btn-primary" onclick="postChoice_yes()" value="YES"></button>
+<input id='first_choice_no' type="button" class="btn btn-primary" onclick="postChoice_no()" value="NO"></button>
 </div>
 {% endblock %}

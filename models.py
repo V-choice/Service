@@ -8,8 +8,8 @@ class User(db.Model):
                    nullable=False, autoincrement=True)
     user_id = db.Column(db.String(100), nullable=False, unique=True)
     user_pw = db.Column(db.String(100), nullable=False)
-    first_choice = db.Column(db.Integer)
-    second_choice = db.Column(db.Integer)
+    first_choice = db.Column(db.String(100))
+    second_choice = db.Column(db.String(100))
 
     def __init__(self, user_id, user_pw):
         self.user_id = user_id
