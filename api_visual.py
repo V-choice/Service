@@ -36,6 +36,8 @@ category_list2 = {'18' : 'Short Movies', '21' : 'Videoblogging', '30' : 'Movies'
                 '33' : 'Classics','34' : 'Comedy', '35' : 'Documentary', '36' : 'Drama','37' : 'Family', '38' : 'Foreign','39' : 'Horror',
                 '40' : 'Sci-Fi/Fantasy', '41' : 'Thriller', '42' : 'Shorts', '43' : 'Shows', '44' : 'Trailers'}
 
+corr = {'Travel & Events': 0.758423, 'People & Blogs':0.724855, 'Howto & Style':0.606430, 'Gaming':0.240503, 'Entertainment':0.167289, 'Science & Technology':0.112975, 'Nonprofits & Activism':0.031593, 'Music':-0.095519, 'Sports':-0.144160, 'Autos & Vehicles':-0.182005, 'Pets & Animals':-0.208127, 'Comedy':-0.219434, 'News & Politics':-0.408071, 'Film & Animation':-0.482346, 'Education':-0.649733}
+
 
 #기능1 : video_count
 @visual.route('/vid-cnt', methods = ['GET', 'POST'])
@@ -340,8 +342,8 @@ def corona_category():
         category_id = request.form['category_id']
         category_id_name = category_list[category_id]
 
-        x = crosstab[category_id_name].tolist()
-        y = crosstab['confirmed'].tolist()
+        x = crosstab['confirmed'].tolist()
+        y = crosstab[category_id_name].tolist()
         p = figure(plot_width=500, plot_height=400, title=category_id_name, x_axis_label='Confirmed', y_axis_label=category_id_name)
         p.circle(x, y, line_color='#fdae61', fill_color='#fdae61', alpha=0.6, size=10)
         p.title.text_font_size = '15px'
@@ -350,6 +352,6 @@ def corona_category():
         script = Markup(script)
         div = Markup(div)
 
-        return render_template('Finished_correlation_bokeh_result.html', script=script, div=div)
+        return render_template('Finished_correlation_bokeh_result.html', category_id_name=category_id_name, corr=corr[category_id_name], script=script, div=div)
     else:
         return render_template('Finished_correlation_bokeh_home.html', category_list = category_list)

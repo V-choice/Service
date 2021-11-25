@@ -122,4 +122,12 @@ def update_post():
     data.content=content
     db.session.commit()
     return jsonify({'result':'success'})
+
+@board.route("/like", methods=["PATCH"])
+def update_like():
+    id = request.form['id']
+    post = Post.query.filter(Post.id == id).first()
+    post.like += int(1)
+    db.session.commit()
+    return jsonify({'result':'success'})
     

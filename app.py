@@ -13,7 +13,11 @@ app = Flask(__name__)
 app.register_blueprint(visual)
 app.register_blueprint(board)
 
+<<<<<<< HEAD
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123456789@localhost:3306/mydb"
+=======
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:12345678@localhost:3306/mydb"
+>>>>>>> e05816077a636a6157bb9487701c657458c00790
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SESSION_TYPE'] = 'filesystem'
 app.secret_key = 'super secret key'
