@@ -22,10 +22,10 @@ app = Flask(__name__)
 visual = Blueprint('visual', __name__)
 
 #가공된 18~19, 20~21년도 csv파일 ('trending_date','title','channel_title','category_id','publish_time','tags','views','likes','dislikes','comment_count','trending_ym')
-kr18 = pd.read_csv('csv_file/kr18_ver2.csv')
-kr20 = pd.read_csv('csv_file/kr20_ver2.csv')
-corona_info = pd.read_csv('csv_file/corona_cases_ver2.csv')
-crosstab = pd.read_csv('csv_file/crosstab.csv')
+kr18 = pd.read_csv('./static/csv_file/kr18_ver2.csv')
+kr20 = pd.read_csv('./static/csv_file/kr20_ver2.csv')
+corona_info = pd.read_csv('./static/csv_file/corona_cases_ver2.csv')
+crosstab = pd.read_csv('./static/csv_file/crosstab.csv')
 
 #기본 데이터 : 영상 데이터 있는것(list)  / 카테고리는 존재하지만 trending 영상은 없는 것(list2)
 category_list = {'1' : 'Film & Animation', '2' : 'Autos & Vehicles', '10' : 'Music', '15' : 'Pets & Animals', '17' : 'Sports','19' : 'Travel & Events',
@@ -36,11 +36,6 @@ category_list2 = {'18' : 'Short Movies', '21' : 'Videoblogging', '30' : 'Movies'
                 '33' : 'Classics','34' : 'Comedy', '35' : 'Documentary', '36' : 'Drama','37' : 'Family', '38' : 'Foreign','39' : 'Horror',
                 '40' : 'Sci-Fi/Fantasy', '41' : 'Thriller', '42' : 'Shorts', '43' : 'Shows', '44' : 'Trailers'}
 
-
-#홈페이지 "/"
-@visual.route('/', methods = ['GET'])
-def home():
-    return render_template('merged_home.html')
 
 #기능1 : video_count
 @visual.route('/vid-cnt', methods = ['GET', 'POST'])

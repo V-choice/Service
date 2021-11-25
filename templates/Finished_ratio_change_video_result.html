@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <!--<title> 원하는 data 결과 입니다 </title>-->
+        <title> Welcome to v-choice! </title>
+        <style type="text/css">
+            body{ text-align: center; }
+        </style>
+    </head>
+    <body>
+        <h2> 그래프 </h2>
+        <h3> Trending 카테고리 <mark> TOP{{label_num}}</mark> 비율 변화 </h3>
+        <br>
+        <img src='data:image/png;base64, {{ data }}'></body></div>
+        <br>
+        <style>
+        .mytable { border-collapse:collapse;}
+        .mytable th, .mytable td { border:1px solid black;}
+        </style>
+        <table class="mytable">
+            {% if rank_change %}
+                <th>현재 순위</th>
+                <th>분야</th>
+                <th>순위 변동</th>
+                {% for i in range(label_num)%}
+                    <tr class = 'rank_data'>
+                        <td><p>{{ i+1 }}</p></td>
+                        <td><p>{{ category_name[i] }}</p></td>
+                        <td><p>{{ rank_change[i] }}</p></td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </table>
+        <a href="/">홈페이지로 가기</a><br>
+        <a href="/ratio-ch-vid">다른 결과도 보기</a>
+    </body>
+</html>

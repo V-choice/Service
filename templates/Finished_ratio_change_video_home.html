@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <!--<title> 원하는 data 결과 입니다 </title>-->
+        <title> Welcome to v-choice! </title>
+        <h1> 코로나 전과 후의 Trending분야 변화를 확인하세요 </h1>
+        <style type="text/css">
+            body{ text-align: center; }
+        </style>
+    </head>
+    <body>
+        <form action="/ratio-ch-vid" method="POST">
+            알고싶은 카테고리 수 입력 (최대:14개 / 추천:6개 이하)<br><br>
+            <input type="text" name="label_num" style="text-align:center; width:50px; height:50px"/><br>
+            <input type="submit" value="선택" /><br><br>
+        </form>
+        {% if msg %}
+            <script>
+                alert('해당 값은 확인할 수 없는 값입니다')
+            </script>
+            <div>
+                <p> <mark><strong>{{msg}}</strong></mark> </p>
+            </div>
+        {% endif %}
+        <br>
+        <h4 style="text-align:left"> 종류 </h4>
+        <ul style="text-align:left">
+            {% for key, value in category_list.items() %}
+                <li><p>{{key}} : {{value}} </p></li>
+            {% endfor %}
+        </ul>
+
+    </body>
+</html>

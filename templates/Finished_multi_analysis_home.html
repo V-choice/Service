@@ -1,0 +1,60 @@
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <!--<title> 원하는 data 결과 입니다 </title>-->
+        <title> Welcome to v-choice! </title>
+        <h1> Data를 자유롭게 선택해서 비교해보세요 </h1>
+        <style type="text/css">
+            body{ text-align: center; }
+        </style>
+    </head>
+    <body>
+        <form action="/multi-analysis" method="POST">
+            <div>
+                코로나 data - 번호 입력<br>
+                <input type="text" name="selection_1_num" style="text-align:center; width:50px; height:50px"/><br><br>
+            </div>
+            <div>
+                Youtube data - 번호 입력<br>
+                <input type="text" name="selection_2_num" style="text-align:center; width:50px; height:50px"/><br><br>
+                <input type="submit" value="선택" /><br><br>
+            </div>
+        </form>
+        {% if msg %}
+            <script>
+                alert('해당 값은 확인할 수 없는 값입니다')
+            </script>
+            <div>
+                <p> <mark><strong>{{msg}}</strong></mark> </p>
+            </div>
+        {% endif %}
+        <br>
+        <style>
+            .mytable2 { border-collapse:collapse;}
+            .mytable2 th, .mytable2 td { border:1px solid black;}
+            .mytable3 { border-collapse:collapse;}
+            .mytable3 th, .mytable3 td { border:1px solid black;}
+        </style>
+        <h4 style="text-align:left"> 종류 </h4>
+        <table class="mytable2">
+            <th>번호</th>
+            <th>코로나 data</th>
+            {% for idx, value in enumerate(corona_col_list) %}
+                <tr class = 'rank_data'>
+                    <td><p>{{ idx+1 }}</p></td>
+                    <td><p>{{ value }}</p></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <table class="mytable3">
+            <th>번호</th>
+            <th>유튜브 트렌딩 data</th>
+            {% for idx,value in enumerate(youtube_col_list) %}
+                <tr class = 'rank_data'>
+                    <td><p>{{ idx+1 }}</p></td>
+                    <td><p>{{ value }}</p></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

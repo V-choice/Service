@@ -1,47 +1,98 @@
-{% extends 'layout.html' %}
-{% block content %}
+{% extends 'layout.html' %} {% block content %}
 
-    <!-- 비주얼 페이지에 대한 설명-->
-    <div class="container border border-dark">
-        <div class="text-center mt-5">
-            <h1>기본그래프</h1>
-        </div>
+<!-- 비주얼 페이지에 대한 설명-->
+<div class="container border border-dark">
+    <div class="text-center mt-5">
+        <h3>Youtube Trending 영상을 통해 코로나 전후의 변화를 찾아보세요!</h3>
     </div>
+</div>
 
-    <!-- graph  -->
-    <div class="container border border-dark">
-        <div class="row">
-            <div class="col-sm-8">
-                <!-- 범위바 & select box -->
-                <label for="customRange1" class="form-label">확진자수? 시간? x축</label>
-                <input type="range" class="form-range" id="customRange1">
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+<div>
+    <a href="/vid-cnt" onclick="alert('카테고리별 영상 수를 확인 할 수 있습니다')">Trending Video 갯수 변화</a>
+</div>
+<div>
+    <a href="/comp-mean-views" onclick="alert('카테고리별 평균 조회수를 확인 할 수 있습니다')">Video 조회 수 변화</a>
+</div>
+<div>
+    <a href="/ratio-ch-vid" onclick="alert('각 카테고리의 영상 비중 및 인기순위을 조회할 수 있습니다')">Trending Video 카테고리 비율 변화</a>
+</div>
+<div>
+    <a href="/multi-analysis" onclick="alert('코로나 데이터와 Youtube Trending 데이터를 \n자유롭게 선택하여 비교할 수 있습니다')">Corona & Youtube Trending 다각도 비교</a>
+</div>
+<div>
+    <a href="/corona-related-multi-analysis" onclick="alert('유튜브 제목과 태그에서 코로나 관련 단어를 추출하여\n연관된 비교분석이 가능합니다')">코로나 연관 단어가 들어간 유튜브 영상과의 비교 </a>
+</div>
+
+<!-- <div>
+    <a href="/board" onclick="alert('통계분석 이후 자신만의 아이디어를 공유해보세요')"> 토론 게시판으로 이동!</a>
+</div> -->
+
+
+
+<!-- graph  -->
+<div class="container border border-dark">
+    <div class="row">
+        <div class="col-sm-8">
+            <!-- 범위바 & select box -->
+            <label for="customRange1" class="form-label">확진자수? 시간? x축</label>
+            <input type="range" class="form-range" id="customRange1">
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                     <option selected>Category</option>
                     <option value="1">Entertain</option>
                     <option value="2">Music</option>
                     <option value="3">Howto</option>
                 </select>
-            </div>
-            <div class="col-sm-4">
-                움직여서 그래프 변화를 보세요
-            </div>
+        </div>
+        <div class="col-sm-4">
+            움직여서 그래프 변화를 보세요
         </div>
     </div>
-    <div class='container border border-dark'>
-        <div class="row">
-            <div class="col-sm-8 border border-dark">
-                <h2>2017-2018 Top5 Category</h2>
-                {{ div18 }}
-                {{ script18 }}
-            </div>
+</div>
+<div class='container border border-dark'>
+    <div class="row">
+        <div class="col-sm-8 border border-dark">
+            <h2>2017-2018 Top5 Category</h2>
+            {{ div18 }} {{ script18 }}
         </div>
+    </div>
+</div>
+<div class='container border border-dark'>
+    <div class="row">
+        <div class="col-sm-8 border border-dark">
+            <h3>카테고리별 영상 수 그래프</h3>
+            {{ div18 }} {{ script18 }}
+        </div>
+    </div>
+</div>
+<div class='container border border-dark'>
+    <div class="row">
+        <div class="col-sm-8 border border-dark">
+            <h3>2017-2018 Top5 Category</h3>
+            {{ div18 }} {{ script18 }}
+        </div>
+    </div>
+</div>
+<div class='container border border-dark'>
+    <div class="row">
+        <div class="col-sm-8 border border-dark">
+            <h3>2017-2018 Top5 Category</h3>
+            {{ div18 }} {{ script18 }}
+        </div>
+    </div>
+</div>
+<div class='container border border-dark'>
+    <div class="row">
+        <div class="col-sm-8 border border-dark">
+            <h3>2017-2018 Top5 Category</h3>
+            {{ div18 }} {{ script18 }}
+        </div>
+    </div>
+</div>
 
-
-        </div>
-        <div class="container align-items-center">
-            <p>상관관계 있다.</p>
-            <button type="button" class="btn btn-primary" onclick="location.href='/post'">YES</button>
-            <button type="button" class="btn btn-primary" onclick="location.href='/post'">No</button>
-        </div>
+<div class="container align-items-center">
+    <p>상관관계 있다.</p>
+    <button type="button" class="btn btn-primary" onclick="location.href='/post'">YES</button>
+    <button type="button" class="btn btn-primary" onclick="location.href='/post'">No</button>
+</div>
 
 {% endblock %}

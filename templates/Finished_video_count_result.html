@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <!--<title> 원하는 data 결과 입니다 </title>-->
+        <title> Welcome to v-choice! </title>
+        <style type="text/css">
+            body{ text-align: center; }
+        </style>
+    </head>
+    <body>
+        <h2> 그래프 </h2>
+        <h3>  <mark>{{category_id_name}}</mark> 분야 트렌딩 영상의 개수 </h3>
+        <br>
+        <img src='data:image/png;base64, {{ data }}'></body></div>
+        <br>
+        <p> 코로나 이전에 비해 현재 <strong>{{category_id_name}}</strong> 분야의 월평균 트렌딩 영상 수는 <strong>{{change_vd_cnt}}개</strong> {{expr_word}}하였습니다 </p>
+        <a href="/">홈페이지로 가기</a><br>
+        <a href="/vid-cnt">다른 결과도 보기</a>
+    </body>
+</html>
