@@ -340,8 +340,8 @@ def corona_category():
         category_id = request.form['category_id']
         category_id_name = category_list[category_id]
 
-        x = crosstab[category_id_name].tolist()
-        y = crosstab['confirmed'].tolist()
+        x = crosstab['confirmed'].tolist()
+        y = crosstab[category_id_name].tolist()
         p = figure(plot_width=500, plot_height=400, title=category_id_name, x_axis_label='Confirmed', y_axis_label=category_id_name)
         p.circle(x, y, line_color='#fdae61', fill_color='#fdae61', alpha=0.6, size=10)
         p.title.text_font_size = '15px'
