@@ -92,7 +92,7 @@ def vidcnt():
 def compare_mean_views():
     if request.method == 'POST':
         try:
-            category_id = request.form['category_id']
+            category_id = request.form.get('category_id')
             category_id_name = category_list[category_id]
         except:
             msg = "정확한 값을 입력하세요"
@@ -162,7 +162,10 @@ def ratio_ch_vid():
             else:
                 result = "변동 없음"
             rank_change.append(result)
-        
+        explode_list=[]
+        for i in range(label_num):
+            explode_list.append(float(i*0.015))
+
         top5_labels_18 = labels_18[:label_num]
         top5_vals_18 = vals_18[:label_num]
         top5_labels_20 = labels_20[:label_num]
@@ -172,11 +175,11 @@ def ratio_ch_vid():
             ,'#FE2E2E', '#FE9A2E', '#F7FE2E', '#80FF00', '#2EFEF7', '#2E2EFE', '#D358F7']
         plt.figure(figsize=(13,5))
         plt.subplot(121)
-        plt.pie(top5_vals_18, labels=top5_labels_18, radius=0.9, autopct='%0.1f%%', startangle=90, colors=colors)
+        plt.pie(top5_vals_18, labels=top5_labels_18, radius=0.9, autopct='%0.1f%%', startangle=-20, colors=colors, explode=explode_list)
         plt.title('Before corona \n(2017-2018)')
         plt.axis('equal')
         plt.subplot(122)
-        plt.pie(top5_vals_20, labels=top5_labels_20, autopct='%0.1f%%', startangle=90, colors=colors)
+        plt.pie(top5_vals_20, labels=top5_labels_20, autopct='%0.1f%%', startangle=-20, colors=colors, explode=explode_list)
         plt.title('After corona \n(2020-2021)')
         plt.axis('equal')
         
