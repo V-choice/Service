@@ -16,7 +16,7 @@ CREATE TABLE `User` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` varchar(255) NOT NULL,
   `user_pw` varchar(255) NOT NULL,
-  `first_choice` varchar(12) NOT NULL,
-  `second_choice` varchar(12) NOT NULL,
+  `first_choice` varchar(12) DEFAULT NULL,
+  `second_choice` varchar(12) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb3;

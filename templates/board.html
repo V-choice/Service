@@ -74,6 +74,24 @@
         $("#edit-area").append(tmpBtn)
 
     }
+
+    function postLike(id) {
+        $.ajax({
+            url: '/like',
+            type: 'patch',
+            data: {
+                'id': id
+            },
+            success: function(res) {
+                let result = res['result']
+                if (result == "success") {
+                    window.location.reload()
+                } else {
+                    alert("저장오류!")
+                }
+            }
+        })
+    }
 </script>
 {% endblock %} {% block content %}
 <!-- yes/no container -->
