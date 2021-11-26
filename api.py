@@ -61,7 +61,7 @@ def logout():
 def post():
     if session.get('login') is not None:
         if request.method == 'GET':
-            data = Post.query.all() #나중에 order_by(like_cnt)
+            data = Post.query.order_by(Post.like.desc()).all() #나중에 order_by(like_cnt)
             now = datetime.now()
             choice_data = User.query.all()
             first_yes,first_no,second_yes,second_no = [],[],[],[]
