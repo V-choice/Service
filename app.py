@@ -5,9 +5,6 @@ from api import board
 from api_visual import visual
 from db_connect import db
 from flask_bcrypt import Bcrypt
-from bokeh.resources import INLINE
-from module.Beforeafter import Beforeafter
-
 
 app = Flask(__name__)
 app.register_blueprint(visual)
