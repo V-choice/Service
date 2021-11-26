@@ -1,56 +1,68 @@
 {% extends 'layout.html' %} {% block content %}
 <script>
-    function postChoice_yes(){
-        let first_choice_yes=$("#first_choice_yes").val()
+    function postChoice_yes() {
+        let first_choice_yes = $("#first_choice_yes").val()
         let user = `{{g.user.user_id}}`
 
         first_choice = first_choice_yes
         $.ajax({
-            url:'/first_choice',
-            type:'post',
-            data:{
-                'first_choice':first_choice,
-                'user':user
+            url: '/first_choice',
+            type: 'post',
+            data: {
+                'first_choice': first_choice,
+                'user': user
             },
-            success:function(res){
+            success: function(res) {
                 let result = res['result']
-                if (result=="success"){
-                    alert('첫번째 답변 저장 완료')
-                    window.location.href='/visual'
-                }else if(result=='fail'){
-                    alert('이미 답변을 하셨습니다')
-                    window.location.href='/visual'
-                }else{
-                    alert('로그인하러 가실까요?')
-                    window.location.href='/join'
+                if (result == "success") {
+                    swal.fire("첫번째 답변 저장 완료", "시각화자료를 보러 출발!", "Success", "go!")
+                        .then(function() {
+                            window.location.href = '/visual'
+                        })
+                } else if (result == 'fail') {
+                    swal.fire("이미 답변을 하셨습니다", "시각화자료를 보러 출발!", "warning", "go!")
+                        .then(function() {
+                            window.location.href = '/visual'
+                        })
+                } else {
+                    swal.fire("로그인부터 할까요?", "여러분의 발자취를 남겨주세요", "info", "go!")
+                        .then(function() {
+                            window.location.href = '/join'
+                        })
                 }
             }
         })
     }
 
-    function postChoice_no(){
-        let first_choice_no=$("#first_choice_no").val()
+    function postChoice_no() {
+        let first_choice_no = $("#first_choice_no").val()
         let user = `{{g.user.user_id}}`
 
         first_choice = first_choice_no
         $.ajax({
-            url:'/first_choice',
-            type:'post',
-            data:{
-                'first_choice':first_choice,
-                'user':user
+            url: '/first_choice',
+            type: 'post',
+            data: {
+                'first_choice': first_choice,
+                'user': user
             },
-            success:function(res){
+            success: function(res) {
                 let result = res['result']
-                if (result=="success"){
-                    alert('첫번째 답변 저장 완료')
-                    window.location.href='/visual'
-                }else if(result=='fail'){
-                    alert('이미 답변을 하셨습니다')
-                    window.location.href='/visual'
-                }else{
-                    alert('로그인하러 가실까요?')
-                    window.location.href='/join'
+                if (result == "success") {
+                    swal.fire("첫번째 답변 저장 완료", "시각화자료를 보러 출발!", "Success", "go!")
+                        .then(function() {
+                            window.location.href = '/visual'
+                        })
+                } else if (result == 'fail') {
+                    swal.fire("이미 답변을 하셨습니다", "시각화자료를 보러 출발!", "warning", "go!")
+                        .then(function() {
+                            window.location.href = '/visual'
+                        })
+                } else {
+                    swal.fire("로그인부터 할까요?", "여러분의 발자취를 남겨주세요", "info", "go!")
+                        .then(function() {
+                            window.location.href = '/join'
+                        })
                 }
             }
         })
@@ -61,117 +73,74 @@
     <div class='row'>
 
         <div class='col-md-12' style="margin-top: 200px;">
-          <img src="/image/main1.png" class="img-fluid" alt="...">
+            <img src="./static/image/main1.png" class="img-fluid" alt="...">
         </div>
-      </div>    
     </div>
-    <div class="container">
-      <div class="row text-center wow fadeInUp">
-        <h1><ins>X-mas Who should I spend it with? </ins></h1>
-      </div>
-    </div>
-
-
-    <div class="jumbotron" style=" height: 500px; background-color: #ffff;"></div>
-
-    <div class="container-fluid">
-      <h1 class="mt-5 ml-5 up-on-scroll">COVID-19</h1>
-      <h5 class="text-muted ml-5 up-on-scroll" style="line-height: 2rem;">2020년 1월 시작된 covid-19<br> 팬데믹 상황으로 인한 '사회적 거리두기'로, 비대면 사회가 깊숙이 자리잡아가고 있다. <br>코로나는 과연 우리에게 어떤 영향을 끼쳤을까.</h5>
-      <div class="row justify-content-center mt-5 up-on-scroll">
-        <img class="rounded" src="/image/corona_graph.png" style="width: 657px; height: 500px; box-shadow: 5px 5px 10px grey;" alt="...">
-      </div>
-    </div>
-    <div class="container-fluid">
-      <h6 class= "text-right text-muted mt-5 mr-3 up-on-scroll" style="color: #5f5e5e;"> 
-        코로나로 늘어난 '집콕족', 그들이 선택한
-      </h6>
-<<<<<<< HEAD
-      <img class="mr-3 ml-2 wow fadeInUp" src="./static/image/youtube.png" style="width: 70px; height: 55px; float: right;" alt="...">
-      <h1 class="text-right wow fadeInUp" style="margin-right: 80px;">
-=======
-      <img class="mr-3 ml-2 up-on-scroll" src="/image/youtube.png" style="width: 70px; height: 55px; float: right;" alt="...">
-      <h1 class="text-right up-on-scroll" style="margin-right: 80px;">
->>>>>>> e05816077a636a6157bb9487701c657458c00790
-        YOUTUBE
-      </h1>
-      <h5 class="text-right text-muted mr-3 up-on-scroll" style="color: #5f5e5e; line-height: 2rem;">코로나는 사람들의 여가를 보내는 방식에도 변화를 일으켰다. <br> 밖이 아닌 집에서 여가를 보내는 사람들이 증가하면서, <br> 
-        실내에서 즐길 수 있는 OTT 서비스 이용이 급증했다.
-      </h5>
-<<<<<<< HEAD
-      <div class="row wow fadeInUp">
-        <image src="./static/image/corona12.png" style="max-width: 100%; height: auto;" alt="..."></image>
-=======
-      <div class="row up-on-scroll">
-        <img class="mb-5" src="/image/ottservice.png" style="max-width: 100%; height: auto;" alt="...">
->>>>>>> e05816077a636a6157bb9487701c657458c00790
-      </div>
-      <h5 class="text-muted up-on-scroll my-5" style="text-align: center; line-height: 2rem; color: #5f5e5e;">
-        국내 OTT 시장을 장악하고 있는 유튜브<br> 유튜브는 코로나를 얼마나 담고 있을까.
-      </h5>
-<<<<<<< HEAD
-      <div class="wow fadeInUp" style="text-align: center;">
-        <img class="img-responsive" src="./static/image/ottUtilization.png" style="width: 500px; height: 400px;" alt="...">
-=======
-      <div class="up-on-scroll" style="text-align: center;">
-        <img class="img-responsive" src="/image/ottUtilization.png" style="width: 500px; height: 400px;" alt="...">
->>>>>>> e05816077a636a6157bb9487701c657458c00790
-      </div>
-    </div>
-    <div class="container-fluid text-center">
-      <pre class="mt-5 mb-5">
-  .
-  .
-  .
-      </pre>
-    </div>
-    <div class="container mb-5">
-      <div class="row">
-        <div class="col text-center up-on-scroll">
-          <p>당신은 코로나로 인한 유튜브의 변화가 있다고 생각하십니까?</p>
-          <form action = "/" method = "POST">
-            <div class="form-check form-check-inline mb-3">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-              <label class="form-check-label" for="inlineCheckbox1">예</label>
-            </div>
-            <div class="form-check form-check-inline mb-3">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-              <label class="form-check-label " for="inlineCheckbox2">아니오</label>
-            </div><br>
-            <input type = "submit" value = "choice!" /><br>
-          </form>
-        </div>
-      </div>
-    </div><div class="container-fluid text-center">
-      <pre class="mt-5 mb-5">
-  .
-  .
-  .
-      </pre>
-    </div>
-    <div class="container mb-5">
-      <div class="row">
-        <div class="col text-center up-on-scroll">
-          <p>당신은 코로나로 인한 유튜브의 변화가 있다고 생각하십니까?</p>
-          <form action = "/" method = "POST">
-            <div class="form-check form-check-inline mb-3">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-              <label class="form-check-label" for="inlineCheckbox1">예</label>
-            </div>
-            <div class="form-check form-check-inline mb-3">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-              <label class="form-check-label " for="inlineCheckbox2">아니오</label>
-            </div><br>
-            <input type = "submit" value = "choice!" /><br>
-          </form>
-        </div>
-      </div>
-    </div>
-
-
-<p>위의 내용을 보고 상관관계가 있다고 생각하시면 'YES'를</p>
-<p>아니라면 'NO'를 눌러주세요</p>
-
-<input id='first_choice_yes' type="button" class="btn btn-primary" onclick="postChoice_yes()" value="YES"></button>
-<input id='first_choice_no' type="button" class="btn btn-primary" onclick="postChoice_no()" value="NO"></button>
 </div>
+<div class="container">
+    <div class="row text-center wow fadeInUp">
+        <h1><ins>X-mas Who should I spend it with? </ins></h1>
+    </div>
+</div>
+
+
+<div class="jumbotron" style=" height: 500px; background-color: #ffff;"></div>
+
+<div class="container-fluid">
+    <h1 class="mt-5 ml-5 up-on-scroll">COVID-19</h1>
+    <h5 class="text-muted ml-5 up-on-scroll" style="line-height: 2rem;">2020년 1월 시작된 covid-19<br> 팬데믹 상황으로 인한 '사회적 거리두기'로, 비대면 사회가 깊숙이 자리잡아가고 있다. <br>코로나는 과연 우리에게 어떤 영향을 끼쳤을까.</h5>
+    <div class="row justify-content-center mt-5 up-on-scroll">
+        <img class="rounded" src="./static/image/corona_graph.png" style="width: 657px; height: 500px; box-shadow: 5px 5px 10px grey;" alt="...">
+    </div>
+</div>
+<div class="container-fluid">
+    <h6 class="text-right text-muted mt-5 mr-3 up-on-scroll" style="color: #5f5e5e;">
+        코로나로 늘어난 '집콕족', 그들이 선택한
+    </h6>
+
+    <img class="mr-3 ml-2 up-on-scroll" src="./static/image/youtube.png" style="width: 70px; height: 55px; float: right;" alt="...">
+    <h1 class="text-right up-on-scroll" style="margin-right: 80px;">
+
+        YOUTUBE
+    </h1>
+    <h5 class="text-right text-muted mr-3 up-on-scroll" style="color: #5f5e5e; line-height: 2rem;">코로나는 사람들의 여가를 보내는 방식에도 변화를 일으켰다. <br> 밖이 아닌 집에서 여가를 보내는 사람들이 증가하면서, <br> 실내에서 즐길 수 있는 OTT 서비스 이용이 급증했다.
+    </h5>
+    <div class="row up-on-scroll">
+        <img class="mb-5" src="./static/image/ottservice.png" style="max-width: 100%; height: auto;" alt="...">
+
+    </div>
+    <h5 class="text-muted up-on-scroll my-5" style="text-align: center; line-height: 2rem; color: #5f5e5e;">
+        국내 OTT 시장을 장악하고 있는 유튜브<br> 유튜브는 코로나를 얼마나 담고 있을까.
+    </h5>
+
+    <div class="up-on-scroll" style="text-align: center;">
+        <img class="img-responsive" src="./static/image/ottUtilization.png" style="width: 500px; height: 400px;" alt="...">
+
+    </div>
+</div>
+<div class="container-fluid text-center">
+    <pre class="mt-5 mb-5">
+  .
+  .
+  .
+      </pre>
+</div>
+<!-- 여백 -->
+<div class="container" style="height:100px" id="ptr"></div>
+<div class="container">
+    <div class="row">
+        <div class="col align-self-start">
+        </div>
+        <div class="col align-self-center" style="text-align:center">
+            <p>위의 내용을 보고 상관관계가 있다고 <br>생각하시면 'YES'를</p>
+            <p>아니라면 'NO'를 눌러주세요</p>
+            <input id='first_choice_yes' type="button" class="btn btn-outline-dark mt-auto" onclick="postChoice_yes()" value="YES"></button>
+            <input id='first_choice_no' type="button" class="btn btn-outline-dark mt-auto" onclick="postChoice_no()" value="NO"></button>
+        </div>
+        <div class="col align-self-end">
+        </div>
+    </div>
+</div>
+<!-- 여백 -->
+<div class="container" style="height:100px"></div>
 {% endblock %}

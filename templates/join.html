@@ -1,6 +1,4 @@
-{% extends 'layout.html' %}
-
-{% block scripts %}
+{% extends 'layout.html' %} {% block scripts %}
 <script>
     function regist() {
         let user_id = $("#userId").val()
@@ -8,12 +6,12 @@
         let user_pw2 = $("#userPw2").val()
 
         if (user_id == '' || user_pw == '') {
-            alert("아이디와 패스워드를 입력 해 주세요");
+            swal.fire("입력 오류", "아이디와 패스워드를 입력 해 주세요", "Error")
             return;
         }
 
         if (user_pw != user_pw2) {
-            alert("비밀번호를 확인 해 주세요!")
+            swal.fire("입력 오류", "비밀번호를 확인해주세요", "Error")
             return;
         }
 
@@ -24,44 +22,43 @@
                 'user_id': user_id,
                 'user_pw': user_pw
             },
-            success: function (res) {
+            success: function(res) {
                 if (res['result'] == 'success') {
-                    alert("회원가입 성공!");
-                    window.location.href = '/login'
+                    swal.fire("회원가입 성공!", "V-choice로 오신걸 환영해요!", "Success")
+                        .then(function() {
+                            window.location.href = '/login'
+                        })
                 }
             }
         })
     }
 </script>
 
-{% endblock %}
+{% endblock %} {% block content %}
+<div style="width: 500px; margin:auto;">
+    <header>
+        <h2>Join V-Choice</h2>
+    </header>
 
-{% block content %}
-<h2 class="title">V-choice 회원가입</h2>
-<hr>
-<div class="card">
-    <div class="card-body">
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">ID</label>
-            <div class="col-sm-10">
-                <input type="text" id='userId' class="form-control" placeholder="id를 입력하세요">
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="userPw">
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">Password Check</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="userPw2">
-            </div>
-        </div>
-        <button class="btn btn-primary" onclick=regist()>회원가입하기</button>
-        <a href="/login" class="btn btn-primary">로그인하기</a>
+    <div class="input-box">
+        <input id="userId" type="text" name="username" placeholder="아이디">
+        <label for="username">아이디</label>
+    </div>
+
+    <div class="input-box">
+        <input id="userPw" type="password" name="password" placeholder="비밀번호">
+        <label for="password">비밀번호</label>
+    </div>
+
+    <div class="input-box">
+        <input id="userPw2" type="password" name="password" placeholder="비밀번호">
+        <label for="password">비밀번호확인</label>
+    </div>
+
+    <div class="text-end">
+        <button class="btn btn-outline-primary mt-auto" onclick=regist()>회원가입</button>
+        <a href="/login" class="btn btn-outline-dark mt-auto">로그인</a>
     </div>
 </div>
-<hr>
+
 {% endblock %}

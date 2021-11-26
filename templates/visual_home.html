@@ -1,141 +1,230 @@
-{% extends 'layout.html' %}
-{% block content %}
+{% extends 'layout.html' %} {% block content %}
 
-        <!-- Header-->
-        <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Youtube & Covid-19 </h1>
-                    <p class="lead fw-normal text-white-50 mb-0"><br> 코로나가 유튜브 트렌딩에 어떤 영향을 주었을까요? &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;데이터 분석 및 시각화 툴을 통해 확인해 보세요!</p>
-                </div>
-            </div>
-        </header>
-        <!-- Section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="../static/visual_image/visual_1.png" alt="..." />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder">Video Count</h5>
-                                    <!-- Product price-->
-                                    특정 카테고리의 <br>Trending 영상 수 변화를 비교할 수 있습니다.
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/vid-cnt">View</a></div>
-                            </div>
+<script>
+    function postChoice_yes() {
+        let second_choice_yes = $("#second_choice_yes").val()
+        let user = `{{g.user.user_id}}`
+
+        second_choice = second_choice_yes
+
+        $.ajax({
+            url: '/second_choice',
+            type: 'post',
+            data: {
+                'second_choice': second_choice,
+                'user': user
+            },
+            success: function(res) {
+                let result = res['result']
+                if (result == "success") {
+                    swal.fire("두번째 답변 저장 완료", "게시판 보러 출발!", "Success", "go!")
+                        .then(function() {
+                            window.location.href = '/post'
+                        })
+                } else if (result == 'fail') {
+                    swal.fire("이미 답변을 하셨습니다", "게시판 보러 출발!", "warning", "go!")
+                        .then(function() {
+                            window.location.href = '/post'
+                        })
+                } else {
+                    swal.fire("로그인부터 할까요?", "여러분의 발자취를 남겨주세요", "info", "go!")
+                        .then(function() {
+                            window.location.href = '/join'
+                        })
+                }
+            }
+        })
+    }
+
+    function postChoice_no() {
+        let second_choice_no = $("#second_choice_no").val()
+        let user = `{{g.user.user_id}}`
+
+        second_choice = second_choice_no
+
+        $.ajax({
+            url: '/second_choice',
+            type: 'post',
+            data: {
+                'second_choice': second_choice,
+                'user': user
+            },
+            success: function(res) {
+                let result = res['result']
+                if (result == "success") {
+                    swal.fire("두번째 답변 저장 완료", "게시판 보러 출발!", "Success", "go!")
+                        .then(function() {
+                            window.location.href = '/post'
+                        })
+                } else if (result == 'fail') {
+                    swal.fire("이미 답변을 하셨습니다", "게시판 보러 출발!", "warning", "go!")
+                        .then(function() {
+                            window.location.href = '/post'
+                        })
+                } else {
+                    swal.fire("로그인부터 할까요?", "여러분의 발자취를 남겨주세요", "info", "go!")
+                        .then(function() {
+                            window.location.href = '/join'
+                        })
+                }
+            }
+        })
+    }
+</script>
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Youtube & Covid-19 </h1>
+            <p class="lead fw-normal text-white-50 mb-0"><br> 코로나가 유튜브 트렌딩에 어떤 영향을 주었을까요? &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;데이터 분석 및 시각화 툴을 통해 확인해 보세요!</p>
+        </div>
+    </div>
+</header>
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="../static/visual_image/visual_1.png" alt="..." />
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <h5 class="fw-bolder">Video Count</h5>
+                            <!-- Product price-->
+                            특정 카테고리의 <br>Trending 영상 수 변화를 비교할 수 있습니다.
                         </div>
                     </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <img class="card-img-top" src="../static/visual_image/visual_2.png" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Vidoe Views</h5>
-                                    <!-- Product price-->
-                                    특정 카테고리의<br> 평균 조회수 변화를 <br> 확인할 수 있습니다
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/comp-mean-views">View</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="../static/visual_image/visual_3.png" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Category Ratio</h5>
-                                    전체 Trending 영상 중 각 카테고리가 차지하는 비율을 확인할 수 있습니다.
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/ratio-ch-vid">View</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="../static/visual_image/visual_4.png" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Multi Analysis - 1</h5>
-                                    <!-- Product price-->
-                                    코로나 데이터, 유튜브 데이터, 카테고리를 하나씩 선택하여 상관관계를 자유롭게 비교해 볼 수 있습니다.
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/multi-analysis">View</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">코로나 필터 적용</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="../static/visual_image/visual_5.png" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Multi Analysis - 2</h5>
-                                    전체 Trending 영상 중<br> 필터링을 통해 코로나와 연관된 영상만이 데이터로 제공되며, 다각도 분석기능을 제공합니다. 
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/corona-related-multi-analysis">View</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="../static/visual_image/visual_6.png" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder"> Confirmed & Category </h5>
-                                    <!-- Bokeh 그래프 설명-->각 카테고리별로 코로나 확진자 수와의 상관관계를 확인할 수 있습니다.
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/correlation-bokeh">View</a></div>
-                            </div>
-                        </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/vid-cnt">View</a></div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Footer
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <img class="card-img-top" src="../static/visual_image/visual_2.png" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">Vidoe Views</h5>
+                            <!-- Product price-->
+                            특정 카테고리의<br> 평균 조회수 변화를 <br> 확인할 수 있습니다
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/comp-mean-views">View</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="../static/visual_image/visual_3.png" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">Category Ratio</h5>
+                            전체 Trending 영상 중 각 카테고리가 차지하는 비율을 확인할 수 있습니다.
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/ratio-ch-vid">View</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="../static/visual_image/visual_4.png" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">Multi Analysis - 1</h5>
+                            <!-- Product price-->
+                            코로나 데이터, 유튜브 데이터, 카테고리를 하나씩 선택하여 상관관계를 자유롭게 비교해 볼 수 있습니다.
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/multi-analysis">View</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Sale badge-->
+                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">코로나 필터 적용</div>
+                    <!-- Product image-->
+                    <img class="card-img-top" src="../static/visual_image/visual_5.png" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">Multi Analysis - 2</h5>
+                            전체 Trending 영상 중<br> 필터링을 통해 코로나와 연관된 영상만이 데이터로 제공되며, 다각도 분석기능을 제공합니다.
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/corona-related-multi-analysis">View</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="../static/visual_image/visual_6.png" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder"> Confirmed & Category </h5>
+                            <!-- Bokeh 그래프 설명-->각 카테고리별로 코로나 확진자 수와의 상관관계를 확인할 수 있습니다.
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/correlation-bokeh">View</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid text-center">
+        <pre class="mt-5 mb-5">
+  .
+  .
+  .
+      </pre>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col align-self-start">
+            </div>
+            <div class="col align-self-center" style="text-align:center">
+                <p>위의 내용을 보고 상관관계가 있다고 <br>생각하시면 'YES'를</p>
+                <p>아니라면 'NO'를 눌러주세요</p>
+
+                <input id='second_choice_yes' type="button" class="btn btn-outline-dark mt-auto" onclick="postChoice_yes()" value="YES"></button>
+                <input id='second_choice_no' type="button" class="btn btn-outline-dark mt-auto" onclick="postChoice_no()" value="NO"></button>
+            </div>
+            <div class="col align-self-end">
+            </div>
+        </div>
+    </div>
+    <div class="container" style="height:100px"></div>
+</section>
+<!-- Footer
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Yeardream ProjectTeam-9 2021</p></div>
-        </footer>
-         Bootstrap core JS-->
-        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        Core theme JS
-        <script src="js/scripts.js"></script> -->
-    </body>
-</html>
-
+        </footer>-->
 {% endblock %}
