@@ -40,7 +40,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/vid-cnt">
+            <a class="nav-link" href="/vid-cnt">
               <span data-feather="bar-chart-2"></span>
               Video Count
             </a>
@@ -76,7 +76,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/sentiment-analysis">
+            <a class="nav-link active" href="/sentiment-analysis">
               <span data-feather="layers"></span>
               Sentiment Analysis
             </a>
@@ -87,29 +87,17 @@
   
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">코로나 이전과 이후, Youtube Trending 영상 수가 얼마나 달라졌을까요?</h1>          
+        <h1 class="h2">코로나 이전과 이후, 유튜브 제목에서 나타나는 감정 변화를 확인해보세요</h1>          
       </div>
       <div style='text-align:center;'>
-        <form action="/vid-cnt" method="POST">
-          <!-- 원하는 카테고리 ID 입력 (숫자)<br><br>
-          <input type="text" name="category_id" style="text-align:center; width:50px; height:50px"/><br>-->
-        <select name="category_id" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="text-align:center;">
-          <option selected> ------------카테고리를 선택하세요------------ </option>
-          <option value="1">영화 & 애니</option>
-          <option value="2">자동차</option>
-          <option value="10">음악</option>
-          <option value="15">동물</option>
-          <option value="17">스포츠</option>
-          <option value="19">여행</option>
-          <option value="20">게임</option>
-          <option value="22">Vlog & 개인방송</option>
-          <option value="23">코미디</option>
-          <option value="24">예능</option>
-          <option value="25">뉴스 & 정치</option>
-          <option value="26">노하우 & 미용</option>
-          <option value="27">교육</option>
-          <option value="28">과학 & 기술</option>
-          <option value="29">비영리단체 & 정부기관</option>
+        <form action="/sentiment-analysis" method="POST">
+        <select name="sentiment_data" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="text-align:center;">
+          <option selected> --------보고싶은 선택지를 골라주세요------ </option>
+          <option value="1">카테고리에 따른 감정 수치</option>
+          <option value="2">누적확진자 수와 Youtube Trending 영상의 감정수치 변화 그래프</option>
+          <option value="3">신규확진자 수와 Youtube Trending 영상 감정수치의 상관관계</option>
+          <option value="4">누적확진자 수와 Youtube Trending 영상 감정수치의 상관관계</option>
+          <option value="5">코로나 전과 후, 긍정적인 제목을 가진 비디오의 비율 변화</option>
         </select>
         <button class="btn btn-primary" type="submit">선택</button>
       </form>
