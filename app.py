@@ -6,6 +6,7 @@ from api_visual import visual
 from db_connect import db
 from flask_bcrypt import Bcrypt
 
+
 app = Flask(__name__)
 app.register_blueprint(visual)
 app.register_blueprint(board)
