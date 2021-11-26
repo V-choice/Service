@@ -76,7 +76,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="/sentiment-analysis">
-                <span data-feather="layers"></span>
+                <span data-feather="file"></span>
                 Sentiment Analysis
               </a>
             </li>
@@ -107,13 +107,30 @@
               <img src='../static/visual_image/total_senti2.png'>
               <p>코로나 신규 확진자 수와 유튜브 트렌딩 비디오 평균 감정수치의 상관관계를 확인할 수 있습니다. 상관계수는 0.397469입니다.<br>
                 감정수치는 -1에서 1 사이로 표시되며 1에 가까울수록 긍정, -1에 가까울수록 부정입니다.</p>
-            {% else %}
+            {% elif user_want == '5' %}
               <img src='../static/visual_image/pos_neg2.png'>
               <p>코로나 신규 확진자 수와 유튜브 트렌딩 비디오 평균 감정수치의 상관관계를 확인할 수 있습니다. 상관계수는 0.397469입니다.<br>
                 감정수치는 -1에서 1 사이로 표시되며 1에 가까울수록 긍정, -1에 가까울수록 부정입니다.</p>
+            {% else %}
+              <img src='../static/visual_image/sentiment_1.png'>
+              <p> &nbsp; </p>
+              <p><strong>Before &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </strong><br>
+                코로나19 이전 유튜브 트렌딩 비디오의 수가 가장 많은 상위 7개 카테고리에 대한 감정의 수를 나타냅니다.<br>
+                7개의 카테고리 중 Entertainment에서 긍정과 중립이 가장 많으며, NEWS & Politics 에서 부정이 가장 많이 나타냅니다.</p>
+              <p> &nbsp; </p>
+              <p> &nbsp; </p>
+              <p> &nbsp; </p>
+              <p> &nbsp; </p>
+              <p> &nbsp; </p>
+              <img src='../static/visual_image/sentiment_2.png'>
+              <p> &nbsp; </p>
+              <p><strong>After &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </strong><br>
+                코로나19 이후 유튜브 트렌딩 비디오의 수가 가장 많은 상위 7개 카테고리에 대한 감정의 수를 나타냅니다.<br>
+                7개의 카테고리 중 Entertainment에서 긍정, 중립, 부정 세 가지 모두 가장 많이 나타냅니다.</p>
             {% endif %}
-          <p></p>
-          <p></p>
+          <p> &nbsp; </p>
+          <p> &nbsp; </p>
+          <p> &nbsp; </p>
         </div>
       </main>
     </div>
