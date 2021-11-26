@@ -85,43 +85,33 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
       <h1 class="h2">코로나 이전과 현재의 Youtube 조회수 변화를 확인해보세요 </h1>          
     </div>
-    <div style='text-align:center;'>
-        <form action="/comp-mean-views" method="POST">
-            원하는 카테고리 ID 입력 (숫자)<br><br>
-            <input type="text" name="category_id" style="text-align:center; width:50px; height:50px"/><br>
-            <input type="submit" value="선택" /><br><br>
-        </form>
-    </div>
-    {% if msg %}
-        <script>
-            alert('해당 값은 확인할 수 없는 값입니다')
-        </script>
-        <div>
-            <p> <mark><strong>{{msg}}</strong></mark> </p>
-        </div>
-    {% endif %}
-
-    <div class="table-responsive">
-      <table class="table table-striped table-sm">
-        <thead>
-          <tr>
-            <th scope="col">ID_#</th>
-            <th scope="col">종류</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for key, value in category_list.items() %}
-          <tr>
-            <td>{{ key }}</td>
-            <td>{{ value }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+    <div style="text-align:center;">
+      <form action="/comp-mean-views" method="POST">
+          <!-- 원하는 카테고리 ID 입력 (숫자)<br><br>
+          <input type="text" name="category_id" style="text-align:center; width:50px; height:50px"/><br>-->
+        <select name="category_id" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="text-align:center;">
+          <option selected> ------------카테고리를 선택하세요------------ </option>
+          <option value="1">영화 & 애니</option>
+          <option value="2">자동차</option>
+          <option value="10">음악</option>
+          <option value="15">동물</option>
+          <option value="17">스포츠</option>
+          <option value="19">여행</option>
+          <option value="20">게임</option>
+          <option value="22">Vlog & 개인방송</option>
+          <option value="23">코미디</option>
+          <option value="24">예능</option>
+          <option value="25">뉴스 & 정치</option>
+          <option value="26">노하우 & 미용</option>
+          <option value="27">교육</option>
+          <option value="28">과학 & 기술</option>
+          <option value="29">비영리단체 & 정부기관</option>
+        </select>
+        <button class="btn btn-primary" type="submit">선택</button>
+      </form>
     </div>
   </main>
 </div>
-
 
   <script src="../static/js/bootstrap.bundle.min.js"></script>
 
