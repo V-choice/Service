@@ -25,6 +25,10 @@ bcrypt = Bcrypt(app)
 def hello_world():
     return render_template('index.html')
 
+@app.route('/aboutus')
+def aboutus():
+    return render_template('aboutus.html')
+
 
 @app.route('/first_choice',methods=["POST"])
 def first_choice():
