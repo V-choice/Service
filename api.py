@@ -2,7 +2,25 @@ from flask import redirect, request, render_template, jsonify, Blueprint, sessio
 from models import User, Post
 from db_connect import db
 from flask_bcrypt import Bcrypt
-from datetime import datetime
+import pendulum
+
+#dataframe 다루기
+import numpy as np
+import pandas as pd
+
+#시각화 그래프 저장
+import base64
+from io import BytesIO
+
+#시각화
+import matplotlib.pyplot as plt
+import matplotlib.dates as md
+from matplotlib.figure import Figure
+import seaborn as sns
+from bokeh.plotting import figure
+from bokeh import *
+from bokeh.embed import components
+
 
 board = Blueprint('board',__name__)
 bcrypt = Bcrypt()
@@ -61,8 +79,8 @@ def logout():
 def post():
     if session.get('login') is not None:
         if request.method == 'GET':
-            data = Post.query.order_by(Post.like.desc()).all() #나중에 order_by(like_cnt)
-            now = datetime.now()
+            post_data = Post.query.order_by(Post.like.desc()).all() #나중에 order_by(like_cnt)
+            now = pendulum.now("UTC").naive()
             choice_data = User.query.all()
             first_yes,first_no,second_yes,second_no = [],[],[],[]
             for user in choice_data:
@@ -74,9 +92,29 @@ def post():
                     second_yes.append(user.user_id)
                 else:
                     second_no.append(user.user_id)
+                yes_yes = len(list(set(first_yes)&set(second_yes)))
+                yes_no = len(set(first_yes).difference(second_yes))
+                no_yes = len(set(first_no).difference(second_yes))
+                no_no = len(set(first_no).intersection(second_no))
+                total = [yes_yes,yes_no,no_yes,no_no]
+                labels = ["yes_yes","yes_no","no_yes","no_no"]
+                plt.figure(figsize=(7,3))
+                plt.subplot(121)
+                plt.pie(total,labels=labels,radius=0.9)
+                plt.title('Pie chart')
+                plt.axis('equal')
+                plt.subplot(122)
+                plt.bar(["first_yes","first_no","second_yes","second_no"],list(map(len,[first_yes,first_no,second_yes,second_no])),width=0.4)
+                plt.title("bar chart")
+                plt.axis('equal')
+
+                buf = BytesIO()
+                plt.savefig(buf, format='png')
+                data = base64.b64encode(buf.getbuffer()).decode("ascii")
+                plt.close()
             return render_template("board.html"\
-                , post_list = data, now=now, \
-                    first_yes=first_yes,first_no=first_no,second_yes=second_yes,second_no=second_no)
+                , post_list = post_data, now=now, data=data, \
+                    first_yes=first_yes,first_no=first_no,second_yes=second_yes,second_no=second_no,total=total)
         else:
             content = request.form['content']
             author = request.form['author']

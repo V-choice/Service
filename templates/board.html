@@ -11,7 +11,7 @@
                 'content': content,
                 'author': author
             },
-            success: function(res) {
+            success: function (res) {
                 let result = res['result']
                 if (result == "success") {
                     window.location.reload()
@@ -31,10 +31,10 @@
                 'id': id,
                 'author': author
             },
-            success: function(res) {
+            success: function (res) {
                 if (res['result'] == 'success') {
                     swal.fire("삭제 성공!", "다른 게시글을 적어보세요", "Success")
-                        .then(function() {
+                        .then(function () {
                             window.location.reload()
                         })
                 }
@@ -51,10 +51,10 @@
                 "id": id,
                 "content": content
             },
-            success: function(res) {
+            success: function (res) {
                 if (res['result'] == 'success') {
                     swal.fire("수정 성공!", "", "Success")
-                        .then(function() {
+                        .then(function () {
                             window.location.reload()
                         })
                 }
@@ -82,7 +82,7 @@
             data: {
                 'id': id
             },
-            success: function(res) {
+            success: function (res) {
                 let result = res['result']
                 if (result == "success") {
                     window.location.reload()
@@ -98,15 +98,13 @@
 <div class="container" style='height: 400px;'>
     <div class="row">
         <div class="col-sm-8">
-            yes/no graph<br> first_yes{{first_yes}}
-            <br> first_no{{first_no}}
-            <br> second_yes{{second_yes}}
-            <br> second_no{{second_no}}
-            <br>
+            <br><img src='data:image/png;base64, {{ data }}'>
 
         </div>
         <div class="col-sm-4">
-            통계 말로 설명
+            데이터를 보고 마음 바뀐 사람의 총 수는 {{total[1]+total[2]}} 명입니다.<br>
+            그중에서 데이터를 보고 상관관계를 찾으신 분은 {{total[2]}} 명이고, <br>
+            데이터에 실망하신 분은 {{total[1]}} 명 입니다.
         </div>
     </div>
 </div>
@@ -128,30 +126,38 @@
                 </div>
             </div>
         </div>
-        <hr> {% for post in post_list %}
-
-        <div class="card mt-2" style='border:none;'>
-            <div class="card-body">
-                <div class="mb-3">
-                    <label class="form-label">{{post.author}}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                    <a>{{now - post.created_at}} ago</a>
-                    <div id='edit-area'>
-                        <p id='userContent{{post.id}}'>{{post.content}}</p>
-                    </div>
-                </div>
-                <div class="card-footer text-muted">
-                    <span>좋아요 {{post.like}} 개</span>
-                    <button class="btn btn-sm btn-success" onclick="postLike('{{post.id}}')">좋아요</button>
-                </div>
-                {%if post.author==g.user.user_id%}
-                <div class="card-footer text-muted">
-                    <button class="btn btn-sm btn-warning" onclick="deletePost('{{post.id}}')">삭제하기</button>
-                    <button id='editBtn{{post.id}}' class="btn btn-sm btn-success" onclick="updatePost('{{post.id}}')">수정하기</button>
-                </div>
-                {% endif %}
+    </div>
+</div>
+<!-- 댓글들 -->
+{% for post in post_list %}
+<div class="container" style="width: 800px;">
+    <div class="row">
+        <div class="col col-sm-10">
+            <!-- <label class="form-label">{{post.author}}&nbsp;&nbsp;&nbsp;&nbsp;</label> -->
+            <a style="font-size: large;">{{post.author}}&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a style="color:dimgray; font-size:small">{{(now - post.created_at).in_days()}} days ago</a>
+            <div id='edit-area'>
+                <p id='userContent{{post.id}}'>{{post.content}}</p>
+                <button class="btn btn-sm btn-success"
+                    onclick="postLike('{{post.id}}')">토글따봉버튼필요</button><span>&nbsp;&nbsp;&nbsp;&nbsp;{{post.like}}</span>
             </div>
-
-            {% endfor %}
+        </div>
+        <div class="col-sm-2" style='width:100px'>
+            {%if post.author==g.user.user_id%}
+            <div class="dropdown" style="border:None">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" onclick="deletePost('{{post.id}}')">Delete</a></li>
+                    <li><a id='editBtn{{post.id}}' class="dropdown-item" onclick="updatePost('{{post.id}}')">Update</a></li>
+                </ul>
+              </div>
+            {% endif %}
         </div>
     </div>
-    {% endblock %}
+</div>
+<div class="container" style="height: 20px;"></div>
+
+{% endfor %}
+</div>
+{% endblock %}
