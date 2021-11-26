@@ -6,18 +6,15 @@ from api_visual import visual
 from db_connect import db
 from flask_bcrypt import Bcrypt
 from bokeh.resources import INLINE
-from module.Beforeafter import Beforeafter
 
 
 app = Flask(__name__)
 app.register_blueprint(visual)
 app.register_blueprint(board)
 
-<<<<<<< HEAD
+
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123456789@localhost:3306/mydb"
-=======
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:12345678@localhost:3306/mydb"
->>>>>>> e05816077a636a6157bb9487701c657458c00790
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SESSION_TYPE'] = 'filesystem'
 app.secret_key = 'super secret key'
@@ -30,14 +27,6 @@ bcrypt = Bcrypt(app)
 def hello_world():
     return render_template('index.html')
 
-
-@app.route('/aboutus')
-def aboutus():
-    return render_template('aboutus.html')
-
-@app.route('/visual')
-def visual():
-    return render_template('visual.html')
 
 @app.route('/first_choice',methods=["POST"])
 def first_choice():
