@@ -173,7 +173,7 @@ def ratio_ch_vid():
 
         colors =  ['#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#E3CEF6'
             ,'#FE2E2E', '#FE9A2E', '#F7FE2E', '#80FF00', '#2EFEF7', '#2E2EFE', '#D358F7']
-        plt.figure(figsize=(13,5))
+        plt.figure(figsize=(10,4))  #13,5
         plt.subplot(121)
         plt.pie(top5_vals_18, labels=top5_labels_18, radius=0.9, autopct='%0.1f%%', startangle=-20, colors=colors, explode=explode_list)
         plt.title('Before corona \n(2017-2018)')
@@ -364,3 +364,13 @@ def corona_category():
         return render_template('visual_correlation_bokeh_result.html', category_id_name=category_id_name, corr=corr[category_id_name], script=script, div=div)
     else:
         return render_template('visual_correlation_bokeh_home.html', category_list = category_list)
+
+#기능 7: 감정분석 기능. 이건 이미 결과가 나와있는 것이고, 데이터 처리하는데 오랜시간이 걸리므로 이미지를 바로 띄워줌
+@visual.route('/sentiment-analysis', methods=['GET', 'POST'])
+def sentiment_analysis():
+    if request.method == 'POST':
+        user_want = request.form['sentiment_data']
+        print(user_want)
+        return render_template('visual_sentiment_analysis_result.html', user_want=user_want)
+    else:
+        return render_template('visual_sentiment_analysis_home.html')
