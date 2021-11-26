@@ -11,7 +11,7 @@ app.register_blueprint(visual)
 app.register_blueprint(board)
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:12345678@localhost:3306/mydb"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123456789@localhost:3306/mydb"
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -28,7 +28,7 @@ def hello_world():
 
 @app.route('/first_choice',methods=["POST"])
 def first_choice():
-    if session['login'] is not None:
+    if session.get('login') is not None:
         user = User.query.filter(User.id==session['login']).first()
         first_choice = request.form.get('first_choice')
         if user.first_choice==None:
@@ -43,7 +43,7 @@ def first_choice():
 
 @app.route('/second_choice',methods=["POST"])
 def second_choice():
-    if session['login'] is not None:
+    if session.get('login') is not None:
         user = User.query.filter(User.id==session['login']).first()
         second_choice = request.form.get('second_choice')
         if user.second_choice == None:
