@@ -55,24 +55,11 @@ def login():
 @board.route('/logout')
 def logout():
     session['login'] = None
-    return redirect('/')
-
-def choice_data():
-    data = User.query.all()
-    first_yes,first_no,second_yes,second_no = [],[],[],[]
-    for user in data:
-        if user.first_choice == 'YES':
-            first_yes.append(user.user_id)
-        else:
-            first_no.append(user.user_id)
-        if user.second_choice == 'YES':
-            second_yes.append(user.user_id)
-        else:
-            second_no.append(user.user_id)
-    return first_yes,first_no,second_yes,second_no
+    return redirect('/login')
 
 @board.route("/post", methods=["GET","POST"])
 def post():
+    if session.get('login') is not None:
         if request.method == 'GET':
             data = Post.query.all() #나중에 order_by(like_cnt)
             now = datetime.now()
@@ -97,6 +84,8 @@ def post():
             db.session.add(post)
             db.session.commit()
             return jsonify({"result":"success"})
+    else:
+        return redirect('/')
 
         
 @board.route("/post", methods=["DELETE"])
