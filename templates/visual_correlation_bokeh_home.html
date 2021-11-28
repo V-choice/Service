@@ -15,105 +15,108 @@
         font-size: 3.5rem;
       }
     }
-  </style>
+</style>
 
-  
+
+<head>
   <!-- Custom styles for this template -->
   <link href="../static/css/dashboard.css" rel="stylesheet">
 </head>
 <body>
-
-<div class="container-fluid">
-<div class="row">
-  <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-    <div class="position-sticky pt-3">
-      <ul class="nav flex-column">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
-              <span></span>
-              &nbsp;
-            </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/visual">
-            <span data-feather="home"></span>
-            Home - Visual
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/vid-cnt">
-            <span data-feather="bar-chart-2"></span>
-            Video Count
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/comp-mean-views">
-            <span data-feather="bar-chart-2"></span>
-            Vidoe Views
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/ratio-ch-vid">
-            <span data-feather="bar-chart-2"></span>
-            Category Ratio
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/multi-analysis">
-            <span data-feather="layers"></span>
-            Multi Analysis - 1
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/corona-related-multi-analysis">
-            <span data-feather="layers"></span>
-            Multi Analysis - 2
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/correlation-bokeh">
-            <span data-feather="file"></span>
-            Confirmed & Category
-          </a>
-        </li>
-      </ul>
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">
+                  <span></span>
+                  &nbsp;
+                </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/visual">
+                <span data-feather="home"></span>
+                Home - Visual
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/vid-cnt">
+                <span data-feather="bar-chart-2"></span>
+                Video Count
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/comp-mean-views">
+                <span data-feather="bar-chart-2"></span>
+                Vidoe Views
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/ratio-ch-vid">
+                <span data-feather="bar-chart-2"></span>
+                Category Ratio
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/multi-analysis">
+                <span data-feather="layers"></span>
+                Multi Analysis - 1
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/corona-related-multi-analysis">
+                <span data-feather="layers"></span>
+                Multi Analysis - 2
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/correlation-bokeh">
+                <span data-feather="file"></span>
+                Confirmed & Category
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/sentiment-analysis">
+                <span data-feather="layers"></span>
+                Sentiment Analysis
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
-  </nav>
-
-  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">Youtube 카테고리와 코로나 확진자 수의 상관관계를 확인해 보세요.</h1>          
-    </div>
-    <div style='text-align:center;'>
-        <form action="/correlation-bokeh" method="POST">
-        <select name="category_id" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="text-align:center;">
-          <option selected> ------------카테고리를 선택하세요------------ </option>
-          <option value="1">영화 & 애니</option>
-          <option value="2">자동차</option>
-          <option value="10">음악</option>
-          <option value="15">동물</option>
-          <option value="17">스포츠</option>
-          <option value="19">여행</option>
-          <option value="20">게임</option>
-          <option value="22">Vlog & 개인방송</option>
-          <option value="23">코미디</option>
-          <option value="24">예능</option>
-          <option value="25">뉴스 & 정치</option>
-          <option value="26">노하우 & 미용</option>
-          <option value="27">교육</option>
-          <option value="28">과학 & 기술</option>
-          <option value="29">비영리단체 & 정부기관</option>
-        </select>
-        <button class="btn btn-primary" type="submit">선택</button>
-      </form>
-    </div>
-  </main>
-</div>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Youtube 카테고리와 코로나 확진자 수의 상관관계를 확인해 보세요.</h1>          
+      </div>
+      <div style='text-align:center;'>
+          <form action="/correlation-bokeh" method="POST">
+          <select name="category_id" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="text-align:center;">
+            <option selected> ------------카테고리를 선택하세요------------ </option>
+            <option value="1">영화 & 애니</option>
+            <option value="2">자동차</option>
+            <option value="10">음악</option>
+            <option value="15">동물</option>
+            <option value="17">스포츠</option>
+            <option value="19">여행</option>
+            <option value="20">게임</option>
+            <option value="22">Vlog & 개인방송</option>
+            <option value="23">코미디</option>
+            <option value="24">예능</option>
+            <option value="25">뉴스 & 정치</option>
+            <option value="26">노하우 & 미용</option>
+            <option value="27">교육</option>
+            <option value="28">과학 & 기술</option>
+            <option value="29">비영리단체 & 정부기관</option>
+          </select>
+          <button class="btn btn-primary" type="submit">선택</button>
+        </form>
+      </div>
+    </main>
+  </div>
   <script src="../static/js/bootstrap.bundle.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="../static/js/dashboard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="../static/js/dashboard.js"></script>
 </body>
-</html>
-
 
 {% endblock %}

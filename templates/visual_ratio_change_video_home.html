@@ -17,106 +17,102 @@
   }
 </style>
 
-
-<!-- Custom styles for this template -->
-<link href="../static/css/dashboard.css" rel="stylesheet">
+<head>
+  <!-- Custom styles for this template -->
+  <link href="../static/css/dashboard.css" rel="stylesheet">
 </head>
 <body>
-
   <div class="container-fluid">
-  <div class="row">
-  <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-    <div class="position-sticky pt-3">
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">
-            <span></span>
-            &nbsp;
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/visual">
-            <span data-feather="home"></span>
-            Home - Visual
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/vid-cnt">
-            <span data-feather="bar-chart-2"></span>
-            Video Count
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/comp-mean-views">
-            <span data-feather="bar-chart-2"></span>
-            Vidoe Views
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/ratio-ch-vid">
-            <span data-feather="bar-chart-2"></span>
-            Category Ratio
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/multi-analysis">
-            <span data-feather="layers"></span>
-            Multi Analysis - 1
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/corona-related-multi-analysis">
-            <span data-feather="layers"></span>
-            Multi Analysis - 2
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/correlation-bokeh">
-            <span data-feather="file"></span>
-            Confirmed & Category
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">코로나 이전과 이후, 인기 카테고리의 순위와 비율은 어떻게 변했을까요?</h1>          
-    </div>
-    <div style='text-align:center;'>
-      <form action="/ratio-ch-vid" method="POST">
-        <select name="label_num" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="text-align:center;">
-          <option selected> -----상위 몇 개의 카테고리를 볼 것인지 골라주세요----- </option>
-          <option value="2">TOP 2</option>
-          <option value="3">TOP 3</option>
-          <option value="4">TOP 4</option>
-          <option value="5">TOP 5</option>
-          <option value="6">TOP 6</option>
-          <option value="7">TOP 7</option>
-          <option value="8">TOP 8</option>
-          <option value="9">TOP 9</option>
-          <option value="10">TOP 10</option>
-          <option value="11">TOP 11</option>
-          <option value="12">TOP 12</option>
-        </select>
-        <button class="btn btn-primary" type="submit">선택</button>
-      </form>
-    </div>
-    {% if msg %}
-        <script>
-            alert('해당 값은 확인할 수 없는 값입니다')
-        </script>
-        <div>
-            <p> <mark><strong>{{msg}}</strong></mark> </p>
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">
+                <span></span>
+                &nbsp;
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/visual">
+                <span data-feather="home"></span>
+                Home - Visual
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/vid-cnt">
+                <span data-feather="bar-chart-2"></span>
+                Video Count
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/comp-mean-views">
+                <span data-feather="bar-chart-2"></span>
+                Vidoe Views
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/ratio-ch-vid">
+                <span data-feather="bar-chart-2"></span>
+                Category Ratio
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/multi-analysis">
+                <span data-feather="layers"></span>
+                Multi Analysis - 1
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/corona-related-multi-analysis">
+                <span data-feather="layers"></span>
+                Multi Analysis - 2
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/correlation-bokeh">
+                <span data-feather="file"></span>
+                Confirmed & Category
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/sentiment-analysis">
+                <span data-feather="layers"></span>
+                Sentiment Analysis
+              </a>
+            </li>
+          </ul>
         </div>
-    {% endif %}
-  </main>
-</div>
-
-<script src="../static/js/bootstrap.bundle.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="../static/js/dashboard.js"></script>
+      </nav>
+    </div>
+    
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">코로나 이전과 이후, 인기 카테고리의 순위와 비율은 어떻게 변했을까요?</h1>          
+      </div>
+      <div style='text-align:center;'>
+        <form action="/ratio-ch-vid" method="POST">
+          <select name="label_num" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="text-align:center;">
+            <option selected> -----상위 몇 개의 카테고리를 볼 것인지 골라주세요----- </option>
+            <option value="2">TOP 2</option>
+            <option value="3">TOP 3</option>
+            <option value="4">TOP 4</option>
+            <option value="5">TOP 5</option>
+            <option value="6">TOP 6</option>
+            <option value="7">TOP 7</option>
+            <option value="8">TOP 8</option>
+            <option value="9">TOP 9</option>
+            <option value="10">TOP 10</option>
+            <option value="11">TOP 11</option>
+            <option value="12">TOP 12</option>
+          </select>
+          <button class="btn btn-primary" type="submit">선택</button>
+        </form>
+      </div>
+    </main>
+  </div>
+  <script src="../static/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="../static/js/dashboard.js"></script>
 </body>
-</html>
+
 {% endblock %}

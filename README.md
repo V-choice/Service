@@ -50,3 +50,9 @@ mysql -uroot -p
 mysql> show database;
 mysql> use mydb;
 ```
+local에서 실행 시 app.py의 14줄
+```terminal
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:['자신의 local sqlserver root 비밀번호']@localhost:3306/mydb"
+```
+로 수정해서 실행
+
