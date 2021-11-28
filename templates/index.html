@@ -1,5 +1,5 @@
 {% extends 'layout.html' %} {% block content %}
-<script>
+<script type="text/javascript">
     function postChoice_yes() {
         let first_choice_yes = $("#first_choice_yes").val()
         let user = `{{g.user.user_id}}`
@@ -67,6 +67,11 @@
             }
         })
     }
+
+    function login_scroll() {
+
+
+    }
 </script>
 
 <div class='container'>
@@ -80,66 +85,67 @@
             <h1><ins>X-mas Who should I spend it with? </ins></h1>
         </div>
     </div>
+</div>
 
 
-    <div class="jumbotron" style=" height: 500px; background-color: #ffff;"></div>
+<div class="jumbotron" style=" height: 500px; background-color: #ffff;"></div>
 
-    <section class="slide-up-wrap">
-        <h2>COVID-19</h2>
-        <div>
-            <img src="./static/image/corona_graph.png" style="width: 657px; height: 500px; box-shadow: 5px 5px 10px grey; object-fit: fill;" alt="...">
-        </div>
-        <div style="background-color: #ffff;">
-            <h5 class="text-muted text-center up-on-scroll" style="line-height: 2rem;">2020년 1월 시작된 covid-19<br> 팬데믹 상황으로 인한 '사회적 거리두기'로, 비대면 사회가 깊숙이 자리잡아가고 있다. <br>코로나는 과연 우리에게 어떤 영향을 끼쳤을까.</h5>
-        </div>
-    </section>
-    <section class="slide-up-wrap mb-5">
-        <h6 class="text-right text-muted mt-5 mr-3" style="color: #5f5e5e;">
-            코로나로 늘어난 '집콕족', 그들이 선택한
-        </h6>
-        <img src="./static/image/youtube.png" style="width: 70px; height: 55px; float: right;" alt="...">
-        <h1 class="text-right" style="margin-right: 80px;">
-            YOUTUBE
-        </h1>
-        <div>
-            <img class="rounded" src="./static/image/ottservice.png" style="width: 657px; height: 500px; box-shadow: 5px 5px 10px grey; object-fit: fill;" alt="...">
-        </div>
-        <div style="background-color: #ffff;">
-            <h5 class="text-center text-muted up-on-scroll" style="line-height: 2rem;">코로나는 사람들의 여가를 보내는 방식에도 변화를 일으켰다.<br> 밖이 아닌 집에서 여가를 보내는 사람들이 증가하면서<br> 실내에서 즐길 수 있는 OTT 서비스 이용이 급증했다.
-            </h5>
-        </div>
-        <div>
-            <img class="rounded" src="./static/image/ottUtilization.png" style="width: 657px; height: 500px; object-fit: fill;" alt="...">
-        </div>
-        <div style="background-color: #ffff;">
-            <h5 class="text-center text-muted up-on-scroll" style="line-height: 2rem;">
-                국내 OTT 시장을 장악하고 있는 유튜브<br> 유튜브는 코로나를 얼마나 담고 있을까.
-            </h5>
-        </div>
-    </section>
-    <div class="container-fluid text-center">
-        <pre class="mt-5 mb-5">
+<section class="slide-up-wrap">
+    <h2>COVID-19</h2>
+    <div>
+        <img src="./static/image/corona_graph.png" style="width: 657px; height: 500px; box-shadow: 5px 5px 10px grey; object-fit: fill;" alt="...">
+    </div>
+    <div style="background-color: #ffff;">
+        <h5 class="text-muted text-center up-on-scroll" style="line-height: 2rem;">2020년 1월 시작된 covid-19<br> 팬데믹 상황으로 인한 '사회적 거리두기'로, 비대면 사회가 깊숙이 자리잡아가고 있다. <br>코로나는 과연 우리에게 어떤 영향을 끼쳤을까.</h5>
+    </div>
+</section>
+<section class="slide-up-wrap mb-5">
+    <h6 class="text-right text-muted mt-5 mr-3" style="color: #5f5e5e;">
+        코로나로 늘어난 '집콕족', 그들이 선택한
+    </h6>
+    <img src="./static/image/youtube.png" style="width: 70px; height: 55px; float: right;" alt="...">
+    <h1 class="text-right" style="margin-right: 80px;">
+        YOUTUBE
+    </h1>
+    <div>
+        <img class="rounded" src="./static/image/ottservice.png" style="width: 657px; height: 500px; box-shadow: 5px 5px 10px grey; object-fit: fill;" alt="...">
+    </div>
+    <div style="background-color: #ffff;">
+        <h5 class="text-center text-muted up-on-scroll" style="line-height: 2rem;">코로나는 사람들의 여가를 보내는 방식에도 변화를 일으켰다.<br> 밖이 아닌 집에서 여가를 보내는 사람들이 증가하면서<br> 실내에서 즐길 수 있는 OTT 서비스 이용이 급증했다.
+        </h5>
+    </div>
+    <div>
+        <img class="rounded" src="./static/image/ottUtilization.png" style="width: 657px; height: 500px; object-fit: fill;" alt="...">
+    </div>
+    <div style="background-color: #ffff;">
+        <h5 class="text-center text-muted up-on-scroll" style="line-height: 2rem;">
+            국내 OTT 시장을 장악하고 있는 유튜브<br> 유튜브는 코로나를 얼마나 담고 있을까.
+        </h5>
+    </div>
+</section>
+<div class="container-fluid text-center">
+    <pre class="mt-5 mb-5">
   .
   .
   .
       </pre>
-    </div>
-    <!-- 여백 -->
-    <div class="container" style="height:100px" id="ptr"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col align-self-start">
-            </div>
-            <div class="col align-self-center" style="text-align:center">
-                <p>위의 내용을 보고 상관관계가 있다고 <br>생각하시면 'YES'를</p>
-                <p>아니라면 'NO'를 눌러주세요</p>
-                <input id='first_choice_yes' type="button" class="btn btn-outline-dark mt-auto" onclick="postChoice_yes()" value="YES"></button>
-                <input id='first_choice_no' type="button" class="btn btn-outline-dark mt-auto" onclick="postChoice_no()" value="NO"></button>
-            </div>
-            <div class="col align-self-end">
-            </div>
+</div>
+<!-- 여백 -->
+<div class="container" style="height:100px" id="ptr"></div>
+<div class="container">
+    <div class="row">
+        <div class="col align-self-start">
+        </div>
+        <div class="col align-self-center" style="text-align:center">
+            <p>위의 내용을 보고 상관관계가 있다고 <br>생각하시면 'YES'를</p>
+            <p>아니라면 'NO'를 눌러주세요</p>
+            <input id='first_choice_yes' type="button" class="btn btn-outline-dark mt-auto" onclick="postChoice_yes()" value="YES"></button>
+            <input id='first_choice_no' type="button" class="btn btn-outline-dark mt-auto" onclick="postChoice_no()" value="NO"></button>
+        </div>
+        <div class="col align-self-end">
         </div>
     </div>
-    <!-- 여백 -->
-    <div class="container" style="height:100px"></div>
-    {% endblock %}
+</div>
+<!-- 여백 -->
+<div class="container" style="height:100px"></div>
+{% endblock %}

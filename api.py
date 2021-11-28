@@ -79,42 +79,56 @@ def logout():
 def post():
     if session.get('login') is not None:
         if request.method == 'GET':
-            post_data = Post.query.order_by(Post.like.desc()).all() #나중에 order_by(like_cnt)
+            post_data = Post.query.order_by(Post.like.desc()).all()
             now = pendulum.now("UTC").naive()
             choice_data = User.query.all()
             first_yes,first_no,second_yes,second_no = [],[],[],[]
             for user in choice_data:
                 if user.first_choice == 'YES':
                     first_yes.append(user.user_id)
-                else:
+                if user.first_choice == 'NO':
                     first_no.append(user.user_id)
                 if user.second_choice == 'YES':
                     second_yes.append(user.user_id)
-                else:
+                if user.second_choice =='NO':
                     second_no.append(user.user_id)
-                yes_yes = len(list(set(first_yes)&set(second_yes)))
-                yes_no = len(set(first_yes).difference(second_yes))
-                no_yes = len(set(first_no).difference(second_yes))
-                no_no = len(set(first_no).intersection(second_no))
-                total = [yes_yes,yes_no,no_yes,no_no]
-                labels = ["yes_yes","yes_no","no_yes","no_no"]
-                plt.figure(figsize=(7,3))
-                plt.subplot(121)
-                plt.pie(total,labels=labels,radius=0.9)
-                plt.title('Pie chart')
-                plt.axis('equal')
-                plt.subplot(122)
-                plt.bar(["first_yes","first_no","second_yes","second_no"],list(map(len,[first_yes,first_no,second_yes,second_no])),width=0.4)
-                plt.title("bar chart")
-                plt.axis('equal')
 
-                buf = BytesIO()
-                plt.savefig(buf, format='png')
-                data = base64.b64encode(buf.getbuffer()).decode("ascii")
-                plt.close()
+            yes_yes = len(list(set(first_yes)&set(second_yes)))
+            yes_no = len(list(set(first_yes)-set(second_yes))) if len(list(set(first_yes)-set(second_yes))) > 0 else len(list(set(second_yes)-set(first_yes)))
+            no_yes = len(list(set(first_no)-set(second_yes))) if len(list(set(first_no)-set(second_yes))) >0 else len(list(set(second_yes)-set(first_no)))
+            no_no = len(list(set(first_no)&set(second_no)))
+            total = [yes_yes,yes_no,no_yes,no_no]
+
+            sum_total = sum(total)
+            centre_circle=plt.Circle((0,0),0.50,fc='white')
+            plt.figure(figsize=(12,4))
+            plt.subplot(131)
+            plt.pie([len(first_yes),len(first_no)],labels=["yes(%d)" %(len(first_yes)),"no(%d)" %(len(first_no))],radius=0.9,shadow=True,startangle=90,explode=(0.0,0.1),colors=["blue","red"])
+            plt.title('First Choice')
+            plt.axis('equal')
+            plt.gcf()
+            plt.gca().add_artist(centre_circle)
+            plt.subplot(132)
+            plt.pie([len(second_yes),len(second_no)],labels=["yes(%d)" %(len(second_yes)),"no(%d)" %(len(second_no))],radius=0.9,shadow=True,startangle=90,explode=(0.0,0.1),colors=["blue","red"])
+            plt.title('Second Choice')
+            plt.axis('equal')
+            centre_circle2=plt.Circle((0,0),0.50,fc='white')
+            plt.gcf()
+            plt.gca().add_artist(centre_circle2)
+            plt.subplot(133)
+            plt.pie(total,labels=["yes_yes(%d)" %yes_yes,"yes_no(%d)" %yes_no,"no_yes(%d)" %no_yes,"no_no(%d)"%no_no],radius=0.9,shadow=True,colors=['#ffadad', '#ffd6a5', '#fdffb6', '#caffbf'])
+            plt.title('Choices transition')
+            plt.axis('equal')
+            centre_circle3=plt.Circle((0,0),0.50,fc='white')
+            plt.gcf()
+            plt.gca().add_artist(centre_circle3)
+            plt.subplots_adjust(wspace=0.4)
+            buf = BytesIO()
+            plt.savefig(buf, format='png')
+            data = base64.b64encode(buf.getbuffer()).decode("ascii")
+            plt.close()
             return render_template("board.html"\
-                , post_list = post_data, now=now, data=data, \
-                    first_yes=first_yes,first_no=first_no,second_yes=second_yes,second_no=second_no,total=total)
+                , post_list = post_data, now=now, data=data,sum_total = sum_total,total=total)
         else:
             content = request.form['content']
             author = request.form['author']

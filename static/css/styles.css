@@ -3312,8 +3312,9 @@ fieldset:disabled .btn {
 
 .btn-light {
     color: #000;
-    background-color: #f8f9fa;
-    border-color: #f8f9fa;
+    background-color: #fff;
+    /* border-color: #f8f9fa;  */
+    border: none;
 }
 
 .btn-light:hover {
@@ -11108,7 +11109,7 @@ fieldset:disabled .btn {
 /* apple clone coding*/
 
 nomargin {
-    maring: 0;
+    margin: 0;
 }
 
 .up-on-scroll {
@@ -11148,7 +11149,7 @@ section>h2 {
     margin-top: 40px;
 }
 
-.slide-up-wrap < h2 {
+.slide-up-wrap>h2 {
     padding-bottom: 50vh;
 }
 
@@ -11304,4 +11305,24 @@ input:focus,
 input:not(:placeholder-shown) {
     border-bottom: solid 1px #8aa1a1;
     outline: none;
+}
+
+
+/* heartbutton */
+
+.heart {
+    /* width: 100px; */
+    height: 100px;
+    background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+    transition: background-position 1s steps(28);
+    transition-duration: 0s;
+    float: left;
+    overflow: hidden;
+}
+
+.heart.is-active {
+    transition-duration: 1s;
+    background-position: -2800px 0;
 }
