@@ -27,3 +27,5 @@ SQLAlchemy==1.4.27
 tornado==6.1
 typing-extensions==4.0.0
 Werkzeug==2.0.2
+pendulum==2.1.2
+

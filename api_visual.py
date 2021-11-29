@@ -73,7 +73,7 @@ def vidcnt():
         else:
             expr_word = "감소"
             change_vd_cnt *= -1
-        color_list = ['b', 'g', 'r', 'c', 'm', 'y', 'k']
+        color_list = ["#bae4bc", "#43a2ca", "#c994c7", "#a8ddb5", "#fc8d59", "#7bccc4", "#fdcc8a"]
         fig, ax = plt.subplots()
         plt.bar(v_cnt_18.index, v_cnt_18['count'], color=color_list[int(category_id)%7], width=0.4, label='count')  #색깔은 category_id에 달라지게끔
         plt.bar(v_cnt_20.index, v_cnt_20['count'], color=color_list[int(category_id)%7-1], width=0.4, label='count')  #색깔은 category_id에 달라지게끔
@@ -172,7 +172,7 @@ def ratio_ch_vid():
         top5_vals_20 = vals_20[:label_num]
 
         colors =  ['#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#E3CEF6'
-            ,'#FE2E2E', '#FE9A2E', '#F7FE2E', '#80FF00', '#2EFEF7', '#2E2EFE', '#D358F7']
+            ,'#bae4bc', '#43a2ca', '#c994c7', '#a8ddb5', '#fc8d59', '#7bccc4', '#fdcc8a']
         plt.figure(figsize=(10,4))  #13,5
         plt.subplot(121)
         plt.pie(top5_vals_18, labels=top5_labels_18, radius=0.9, autopct='%0.1f%%', startangle=-20, colors=colors, explode=explode_list)
@@ -196,7 +196,7 @@ def ratio_ch_vid():
 def multi_analysis():
     youtube_col_list = ['views', 'likes', 'dislikes', 'comment_count', 'likes_ratio']
     corona_col_list = ['local_outbreak', 'imported_cases', 'death', 'total_death', 'new_cases', 'total_cases', 'variation']
-    color_list = ['darkorange','g', 'b','r']
+    color_list = ['#43a2ca','#c994c7', '#fc8d59','#7bccc4']
     new_category_list={'0':'All Categories'}
     new_category_list.update(category_list)
     if request.method == 'POST':
@@ -281,7 +281,7 @@ def multi_analysis():
 def corona_related_multi_analysis():
     youtube_col_list = ['views', 'likes', 'dislikes', 'comment_count', 'likes_ratio']
     corona_col_list = ['local_outbreak', 'imported_cases', 'death', 'total_death', 'new_cases', 'total_cases', 'variation']
-    color_list = ['darkorange','g', 'b','r']
+    color_list = ['#43a2ca','#c994c7', '#fc8d59','#7bccc4']
     corona_related_word =['코로나', '바이러스','변이', '백신', '거리두기', '코비드', 'corona', 
                     'covid', '확진자', '사망자', '위드', '확진','마스크','전파자','방역', '자가격리', '비대면']
     corona_not_related_word =['drama', '뮤직비디오']
