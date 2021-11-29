@@ -73,7 +73,7 @@ def vidcnt():
         else:
             expr_word = "감소"
             change_vd_cnt *= -1
-        color_list = ['b', 'g', 'r', 'c', 'm', 'y', 'k']
+        color_list = ["#bae4bc", "#43a2ca", "#c994c7", "#a8ddb5", "#fc8d59", "#7bccc4", "#fdcc8a"]
         fig, ax = plt.subplots()
         plt.bar(v_cnt_18.index, v_cnt_18['count'], color=color_list[int(category_id)%7], width=0.4, label='count')  #색깔은 category_id에 달라지게끔
         plt.bar(v_cnt_20.index, v_cnt_20['count'], color=color_list[int(category_id)%7-1], width=0.4, label='count')  #색깔은 category_id에 달라지게끔
