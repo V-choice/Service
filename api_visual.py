@@ -172,7 +172,7 @@ def ratio_ch_vid():
         top5_vals_20 = vals_20[:label_num]
 
         colors =  ['#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#E3CEF6'
-            ,'#FE2E2E', '#FE9A2E', '#F7FE2E', '#80FF00', '#2EFEF7', '#2E2EFE', '#D358F7']
+            ,'#bae4bc', '#43a2ca', '#c994c7', '#a8ddb5', '#fc8d59', '#7bccc4', '#fdcc8a']
         plt.figure(figsize=(10,4))  #13,5
         plt.subplot(121)
         plt.pie(top5_vals_18, labels=top5_labels_18, radius=0.9, autopct='%0.1f%%', startangle=-20, colors=colors, explode=explode_list)
