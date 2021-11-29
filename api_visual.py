@@ -281,7 +281,7 @@ def multi_analysis():
 def corona_related_multi_analysis():
     youtube_col_list = ['views', 'likes', 'dislikes', 'comment_count', 'likes_ratio']
     corona_col_list = ['local_outbreak', 'imported_cases', 'death', 'total_death', 'new_cases', 'total_cases', 'variation']
-    color_list = ['darkorange','g', 'b','r']
+    color_list = ['#43a2ca','#c994c7', '#fc8d59','#7bccc4']
     corona_related_word =['코로나', '바이러스','변이', '백신', '거리두기', '코비드', 'corona', 
                     'covid', '확진자', '사망자', '위드', '확진','마스크','전파자','방역', '자가격리', '비대면']
     corona_not_related_word =['drama', '뮤직비디오']
