@@ -4,22 +4,12 @@ from db_connect import db
 from flask_bcrypt import Bcrypt
 import pendulum
 
-#dataframe 다루기
-import numpy as np
-import pandas as pd
-
 #시각화 그래프 저장
 import base64
 from io import BytesIO
 
 #시각화
 import matplotlib.pyplot as plt
-import matplotlib.dates as md
-from matplotlib.figure import Figure
-import seaborn as sns
-from bokeh.plotting import figure
-from bokeh import *
-from bokeh.embed import components
 
 
 board = Blueprint('board',__name__)
@@ -101,6 +91,7 @@ def post():
 
             sum_total = sum(total)
             centre_circle=plt.Circle((0,0),0.50,fc='white')
+            plt.switch_backend('Agg') #to set the backend to a non-interactive one
             plt.figure(figsize=(12,4))
             plt.subplot(131)
             plt.pie([len(first_yes),len(first_no)],labels=["yes(%d)" %(len(first_yes)),"no(%d)" %(len(first_no))],radius=0.9,shadow=True,startangle=90,explode=(0.0,0.1),colors=["blue","red"])

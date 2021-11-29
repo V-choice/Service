@@ -1,59 +1,29 @@
-from flask import Flask, render_template, request,jsonify, session, redirect
-from models import User, Post
-import pymysql
-from api import board
-from api_visual import visual
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+from api.api_board import board
+from api.api_visual import visual
+from api.api_choice import choice
 from db_connect import db
-from flask_bcrypt import Bcrypt
+import config
 
-app = Flask(__name__)
-app.register_blueprint(visual)
-app.register_blueprint(board)
-
-
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:12345678@localhost:3306/mydb"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SESSION_TYPE'] = 'filesystem'
-app.secret_key = 'super secret key'
-
-db.init_app(app)
-bcrypt = Bcrypt(app)
+def create_app():
+    
+    app = Flask(__name__)
+    app.register_blueprint(visual)
+    app.register_blueprint(board)
+    app.register_blueprint(choice)
+    app.config.from_object(config)
 
 
-@app.route('/')
-def hello_world():
-    return render_template('index.html')
+    db.init_app(app)
 
-@app.route('/aboutus')
-def aboutus():
-    return render_template('aboutus.html')
-
-
-@app.route('/first_choice',methods=["POST"])
-def first_choice():
-    if session.get('login') is not None:
-        user = User.query.filter(User.id==session['login']).first()
-        first_choice = request.form.get('first_choice')
-        if user.first_choice==None:
-            user.first_choice=first_choice
-            db.session.commit()
-            return jsonify({'result':'success'})
-        else:
-            return jsonify({'result':'fail'})
-    else:
-        return redirect('/join')
+    from models import User, Post
+    
+    # cors + migration 사용해야 할 수 도 있음.
+    return app
 
 
-@app.route('/second_choice',methods=["POST"])
-def second_choice():
-    if session.get('login') is not None:
-        user = User.query.filter(User.id==session['login']).first()
-        second_choice = request.form.get('second_choice')
-        if user.second_choice == None:
-            user.second_choice=second_choice
-            db.session.commit()
-            return jsonify({'result':'success'})
-        else:
-            return jsonify({'result':'fail'})
-    else:
-        return redirect('/join')
+
+if __name__=="__main__":
+    create_app().run(host='0.0.0.0',port='5000',debug=True)
