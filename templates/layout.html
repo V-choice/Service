@@ -32,6 +32,11 @@
     <title>V-Choice</title>
     <!-- script -->
     {% block scripts %} {% endblock %}
+    <script>
+        function needlogin() {
+            swal.fire("회원가입과 로그인이 필요해요", "", "warning", false)
+        }
+    </script>
     <nav class="navbar fixed-top navbar-light bg-light shadow p-3 mb-5 bg-white rounded">
         <a class="navbar-brand mb-0 h1" href="/">
           V-CHOICE
@@ -44,14 +49,17 @@
             <li class="nav-item">
                 <a class="nav-link active text-dark" href="/visual">Visual</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="/post">Board</a>
-            </li>
             {%if not session['login']%}
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="/post" onclick=needlogin()>Board</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" href="/login">Login</a>
             </li>
             {%else%}
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="/post">Board</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" href="/logout">Logout</a>
             </li>

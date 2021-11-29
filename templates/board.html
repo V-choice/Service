@@ -1,11 +1,5 @@
 {% extends 'layout.html' %} {% block scripts %}
 <script>
-    $(function() {
-        $(".heart").on("click", function() {
-            $(this).toggleClass("is-active");
-        });
-    });
-
     function postContent() {
         let content = $("#my-content").val()
         let author = `{{g.user.user_id}}`
@@ -119,8 +113,8 @@
             <div class="card-body">
                 <!-- <div class="mb-3"> -->
                 <div class="input-box">
-                    <input id='my-content' placeholder="느낀점을 다른사람과 공유해 보세요👍">
-                    <label for="comment">"느낀점을 다른사람과 공유해 보세요👍"</label>
+                    <input id='my-content' placeholder="느낀 점을 다른사람과 공유해 보세요👍">
+                    <label for="comment">"느낀 점을 다른사람과 공유해 보세요👍"</label>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button class="btn btn-secondary me-md-2" onclick="postContent()">댓글</button>

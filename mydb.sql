@@ -1,7 +1,7 @@
 
-DROP TABLE IF EXISTS `Post`;
+DROP TABLE IF EXISTS `post`;
 
-CREATE TABLE `Post` (
+CREATE TABLE `post` (
   `id` int NOT NULL AUTO_INCREMENT,
   `author` varchar(255) NOT NULL,
   `content` varchar(45) NOT NULL,
@@ -10,9 +10,9 @@ CREATE TABLE `Post` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb3;
 
-DROP TABLE IF EXISTS `User`;
+DROP TABLE IF EXISTS `user`;
 
-CREATE TABLE `User` (
+CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` varchar(255) NOT NULL,
   `user_pw` varchar(255) NOT NULL,

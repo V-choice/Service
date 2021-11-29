@@ -137,7 +137,7 @@ def post():
             db.session.commit()
             return jsonify({"result":"success"})
     else:
-        return redirect('/')
+        return redirect('/join')
 
         
 @board.route("/post", methods=["DELETE"])
