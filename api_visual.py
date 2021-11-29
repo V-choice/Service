@@ -196,7 +196,7 @@ def ratio_ch_vid():
 def multi_analysis():
     youtube_col_list = ['views', 'likes', 'dislikes', 'comment_count', 'likes_ratio']
     corona_col_list = ['local_outbreak', 'imported_cases', 'death', 'total_death', 'new_cases', 'total_cases', 'variation']
-    color_list = ['darkorange','g', 'b','r']
+    color_list = ['#43a2ca','#c994c7', '#fc8d59','#7bccc4']
     new_category_list={'0':'All Categories'}
     new_category_list.update(category_list)
     if request.method == 'POST':
