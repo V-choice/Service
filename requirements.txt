@@ -27,3 +27,4 @@ SQLAlchemy==1.4.27
 tornado==6.1
 typing-extensions==4.0.0
 Werkzeug==2.0.2
+./statics/local_wheels/wordcloud-1.8.1-cp38-cp38-win_amd64.whl
