@@ -7,14 +7,13 @@ from api.api_choice import choice
 from db_connect import db
 import config
 
-
-
 app = Flask(__name__)
 app.register_blueprint(visual)
 app.register_blueprint(board)
 app.register_blueprint(choice)
 app.config.from_object(config)
 
+db.init_app(app)
 
 db.init_app(app)
 
