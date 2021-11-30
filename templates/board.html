@@ -95,8 +95,61 @@
     }
 </script>
 {% endblock %} {% block content %}
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">V-choice 게시판</h1>
+            <p class="lead fw-normal text-white-50 mb-0"><br> v-choice팀과 여러분의 생각을 비교해보세요&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;그리고 여러분의 의견을 댓글로 달아주세요</p>
+        </div>
+    </div>
+</header>
+<!-- 여백 -->
+<div class="container" style="height:300px"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 up-on-scroll" style="padding-bottom:50px">
+            <h2><img src="./static/image/virus.png" alt='' width="70px" height="70px">V-choice팀이 발견한 인사이트와 여러분의 인사이트를 비교해보세요</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6" style="padding-left:100px">
+            <h5>
+                1. 코로나 전후 제목에서 나타나는 긍부정 비율변화에서
+            </h5>
+            <p style="padding-left:50px">오히려 코로나 전보다 후가 긍정비율이 유의미하게 높다는 것은 시청자들이 영상시청을 통해 즐겁고 긍정적인 컨텐츠를 찾는 것을 유추할 수 있다.</p>
+            <h5>
+                2. 평균 감정수치와 코로나19 누적 확진자 수 추이 그래프에서
+            </h5>
+            <p style="padding-left:50px">코로나 기간동안 꾸준하게 감정수치가 올라가는 것은 사람들이 코로나에 익숙해지면서 부정수치가 누그러듬에 따라 올라간 것으로 보인다.</p>
+            <h4>
+                3.
+            </h4>
+            <p style="padding-left:50px"></p>
+        </div>
+        <div class="col-md-6" style="padding-top:200px; padding-left:100px">
+            <h3>
+                아쉬운 부분이 있다면..
+            </h3>
+            <p style="padding-left:50px; padding-bottom:50px">~중에 ~만큼의 기간동안의 데이터를 구할 수 없었기 때문에 연속적인 그래프를 제공함으로써 더욱 직관적인 인사이트를 주지 못한데에 아쉬움이 남습니다.</p>
+            <h3>
+                Yes/No 데이터를 수집하게 된 계기..
+            </h3>
+            <p style="padding-left:50px">처음 분석을 시작할때 생각했던 것 보다 유튜브와 코로나 간의 명시적인 상관관계를 밝혀내는 것이 쉽지 않았습니다. 그래서 V-choice를 이용하는 분들은 어떤 마음으로 들어와서 어떤 인사이트를 얻고 어떤 반응을 보이는지 궁금해서 이런 구성을 하게되었습니다.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="height:300px"></div>
 <!-- yes/no container -->
-<div class="container-fluid row" style="width:100%">
+<div class="container-fluid up-on-scroll">
+    <div class="row">
+        <div class="col-md-12" style="padding-bottom:30px;">
+            <h2 style="padding-left:50px">다른 유저들은 어떤 선택을 했을까요?</h2>
+        </div>
+    </div>
+</div>
+<div class="container-fluid row up-on-scroll" style="width:100%">
     <div class="col-md-12 text-center">
         <br><img src='data:image/png;base64, {{ data }}' width="90%" height="auto">
     </div>
@@ -108,14 +161,22 @@
     </div>
 </div>
 <!-- post container -->
+<div class="container" style="height:200px"></div>
+<div class="container-fluid up-on-scroll">
+    <div class="row">
+        <div class="col-md-12" style="padding-bottom:30px;">
+            <h2 style="padding-left:50px">📮 여러분의 의견을 댓글로 남겨주세요</h2>
+        </div>
+    </div>
+</div>
 <div class="container-fluid" style='width: 800px;'>
     <div class="row">
         <div class="card" style='border:none;'>
             <div class="card-body">
                 <!-- <div class="mb-3"> -->
                 <div class="input-box">
-                    <input id='my-content' placeholder="느낀 점을 다른사람과 공유해 보세요👍">
-                    <label for="comment">"느낀 점을 다른사람과 공유해 보세요👍"</label>
+                    <input id='my-content' placeholder="클릭! 댓글을 남겨보고 다른사람이 남긴 인사이트를 확인해보세요👍">
+                    <label for="comment">"클릭! 댓글을 남겨보고 다른사람이 남긴 인사이트를 확인해보세요👍"</label>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button class="btn btn-secondary me-md-2" onclick="postContent()">댓글</button>
@@ -156,7 +217,14 @@
         </div>
     </div>
 </div>
-<div class="container" style="height: 20px;"></div>
+<!-- 여백 -->
+<div class="container" style="height:200px"></div>
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">V-choice를 이용해주셔서 감사합니다.</p>
+    </div>
+</footer>
 
 {% endfor %}
 </div>
