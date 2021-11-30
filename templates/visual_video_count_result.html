@@ -1,108 +1,100 @@
-{% extends 'layout.html' %}
-{% block content %}
+{% extends 'layout.html' %} {% block content %}
 <style>
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-  }
-
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
     }
-  }
+    
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
 </style>
 
 <head>
-  <!-- Custom styles for this template -->
-  <link href="../static/css/dashboard.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../static/css/dashboard.css" rel="stylesheet">
 </head>
+
 <body>
-  <div class="container-fluid">
-    <div class="row">
-      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-        <div class="position-sticky pt-3">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">
-                <span></span>
-                &nbsp;
-              </a>
-          </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/visual">
-                <span data-feather="home"></span>
-                Home - Visual
-              </a>
-              <li class="nav-link" aria-current="page" style='margin-left:80px; color:#534071; font-size:0.875rem;'>
-                  검색을 완료했으면 Home으로 돌아가서<br>
-                  Yes/No 투표완료를 부탁드려요.
-                </li>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="/vid-cnt">
-                <span data-feather="bar-chart-2"></span>
-                Video Count
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/comp-mean-views">
-                <span data-feather="bar-chart-2"></span>
-                Vidoe Views
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/ratio-ch-vid">
-                <span data-feather="bar-chart-2"></span>
-                Category Ratio
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/multi-analysis">
-                <span data-feather="layers"></span>
-                Multi Analysis - 1
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/corona-related-multi-analysis">
-                <span data-feather="layers"></span>
-                Multi Analysis - 2
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/correlation-bokeh">
-                <span data-feather="file"></span>
-                Confirmed & Category
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/sentiment-analysis">
-                <span data-feather="layers"></span>
-                Sentiment Analysis
-              </a>
-            </li>
-          </ul>
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">
+                                <span></span> &nbsp;
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/visual">
+                                <span data-feather="home"></span> Home - Visual
+                            </a>
+                            <li class="nav-link" aria-current="page" style='margin-left:20px; color:#534071; font-size:0.8rem;'>
+                                👆 돌아가서 두번째 투표는<br> 👇 다른 그래프도 보려면
+                            </li>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/vid-cnt">
+                                <span data-feather="bar-chart-2"></span> Video Count
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/comp-mean-views">
+                                <span data-feather="bar-chart-2"></span> Vidoe Views
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ratio-ch-vid">
+                                <span data-feather="bar-chart-2"></span> Category Ratio
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/multi-analysis">
+                                <span data-feather="layers"></span> Multi Analysis - 1
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/corona-related-multi-analysis">
+                                <span data-feather="layers"></span> Multi Analysis - 2
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/correlation-bokeh">
+                                <span data-feather="file"></span> Confirmed & Category
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/sentiment-analysis">
+                                <span data-feather="layers"></span> Sentiment Analysis
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">코로나 이전과 이후, Youtube Trending 영상 수가 얼마나 달라졌을까요?</h1>
+                </div>
+                <p> &nbsp; </p>
+                <div style='text-align:center;'>
+                    <h3> <mark>{{category_id_name}}</mark> 분야 트렌딩 영상의 개수 </h3>
+                    <img src='data:image/png;base64, {{ data }}' width="50%" height='auto'>
+                    <p></p>
+                    <p>코로나 이전에 비해 현재 <mark><strong>{{category_id_name}}</strong></mark> 분야의 월평균 트렌딩 영상 수는 <mark><strong>{{change_vd_cnt}}개</strong></mark> {{expr_word}}하였습니다 </p>
+                </div>
+            </main>
         </div>
-      </nav>
-  
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">코로나 이전과 이후, Youtube Trending 영상 수가 얼마나 달라졌을까요?</h1>          
-        </div>
-        <p> &nbsp; </p>
-        <div style='text-align:center;'>
-          <h3> <mark>{{category_id_name}}</mark> 분야 트렌딩 영상의 개수 </h3>
-            <img src='data:image/png;base64, {{ data }}' width="50%" height='auto'>
-          <p></p>
-          <p>코로나 이전에 비해 현재 <mark><strong>{{category_id_name}}</strong></mark> 분야의 월평균 트렌딩 영상 수는 <mark><strong>{{change_vd_cnt}}개</strong></mark> {{expr_word}}하였습니다 </p>
-        </div>
-      </main>
     </div>
-  </div>
-  <script src="../static/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="../static/js/dashboard.js"></script>
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+    <script src="../static/js/dashboard.js"></script>
 </body>
 {% endblock %}
