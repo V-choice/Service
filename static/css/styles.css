@@ -6529,6 +6529,7 @@ fieldset:disabled .btn {
 
 .carousel {
     position: relative;
+    width: 75%;
 }
 
 .carousel.pointer-event {
