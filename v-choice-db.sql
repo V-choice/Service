@@ -1,4 +1,3 @@
-
 DROP TABLE IF EXISTS `post`;
 
 CREATE TABLE `post` (
