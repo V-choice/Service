@@ -1,0 +1,138 @@
+{% extends 'layout.html' %} {% block content %}
+<script type="text/javascript">
+    function postChoice_yes() {
+        let first_choice_yes = $("#first_choice_yes").val()
+        let user = `{{g.user.user_id}}`
+
+        first_choice = first_choice_yes
+        $.ajax({
+            url: '/first_choice',
+            type: 'post',
+            data: {
+                'first_choice': first_choice,
+                'user': user
+            },
+            success: function(res) {
+                let result = res['result']
+                if (result == "success") {
+                    swal.fire("첫번째 답변 저장 완료", "시각화자료를 보러 출발!", "Success", "go!")
+                        .then(function() {
+                            window.location.href = '/visual'
+                        })
+                } else if (result == 'fail') {
+                    swal.fire("이미 답변을 하셨습니다", "시각화자료를 보러 출발!", "warning", "go!")
+                        .then(function() {
+                            window.location.href = '/visual'
+                        })
+                } else {
+                    swal.fire("로그인부터 할까요?", "여러분의 발자취를 남겨주세요", "info", "go!")
+                        .then(function() {
+                            window.location.href = '/join'
+                        })
+                }
+            }
+        })
+    }
+
+    function postChoice_no() {
+        let first_choice_no = $("#first_choice_no").val()
+        let user = `{{g.user.user_id}}`
+
+        first_choice = first_choice_no
+        $.ajax({
+            url: '/first_choice',
+            type: 'post',
+            data: {
+                'first_choice': first_choice,
+                'user': user
+            },
+            success: function(res) {
+                let result = res['result']
+                if (result == "success") {
+                    swal.fire("첫번째 답변 저장 완료", "시각화자료를 보러 출발!", "Success", "go!")
+                        .then(function() {
+                            window.location.href = '/visual'
+                        })
+                } else if (result == 'fail') {
+                    swal.fire("이미 답변을 하셨습니다", "시각화자료를 보러 출발!", "warning", "go!")
+                        .then(function() {
+                            window.location.href = '/visual'
+                        })
+                } else {
+                    swal.fire("로그인부터 할까요?", "여러분의 발자취를 남겨주세요", "info", "go!")
+                        .then(function() {
+                            window.location.href = '/join'
+                        })
+                }
+            }
+        })
+    }
+
+    function login_scroll() {
+
+
+    }
+</script>
+
+<div id="mainSlides" class="carousel slide carousel-dark mx-auto" data-ride="carousel">
+
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#mainSlides" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#mainSlides" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#mainSlides" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#mainSlides" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+      
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="./static/image/main.JPG" style="height: 500px; margin-left: 14px;" alt="main slide">
+          </div>
+          <div class="carousel-item">
+            <img src="./static/image/corona.JPG" style="height: 500px; margin-left: 12px;" alt="corona slide">
+          </div>
+          <div class="carousel-item">
+            <img src="./static/image/youtube.JPG" style="height: 500px; margin-left: 13px;" alt="youtube slide">
+          </div>
+          <div class="carousel-item">
+            <img src="./static/image/v_choice_data.JPG" style="height: 500px; margin-left: 15px;" alt="data slide">
+          </div>
+        </div>
+      
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#mainSlides" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#mainSlides" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      
+      </div>
+<div class="container-fluid text-center">
+    <pre class="mt-5 mb-5">
+  .
+  .
+  .
+      </pre>
+</div>
+<!-- 여백 -->
+<div class="container" style="height:100px" id="ptr"></div>
+<div class="container">
+    <div class="row">
+        <div class="col align-self-start">
+        </div>
+        <div class="col align-self-center" style="text-align:center">
+            <p>위의 내용을 보고 상관관계가 있다고 <br>생각하시면 'YES'를,</p>
+            <p>아니라면 'NO'를 눌러주세요</p>
+            <p class="text-muted" style="font-size: 12px;">(YES/NO를 누르면 그래프를 볼 수 있습니다!)</p>
+            <input id='first_choice_yes' type="button" class="btn btn-outline-dark mt-auto" onclick="postChoice_yes()" value="YES"></button>
+            <input id='first_choice_no' type="button" class="btn btn-outline-dark mt-auto" onclick="postChoice_no()" value="NO"></button>
+        </div>
+        <div class="col align-self-end">
+        </div>
+    </div>
+</div>
+<!-- 여백 -->
+<div class="container" style="height:100px"></div>
+{% endblock %}
