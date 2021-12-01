@@ -73,25 +73,31 @@ def post():
             now = pendulum.now("UTC").naive()
             choice_data = User.query.all()
             first_yes,first_no,second_yes,second_no = [],[],[],[]
+            yes_yes,yes_no,no_yes,no_no =[],[],[],[]
             for user in choice_data:
-                if user.first_choice == 'YES':
-                    first_yes.append(user.user_id)
-                if user.first_choice == 'NO':
-                    first_no.append(user.user_id)
-                if user.second_choice == 'YES':
-                    second_yes.append(user.user_id)
-                if user.second_choice =='NO':
-                    second_no.append(user.user_id)
-
-            yes_yes = len(list(set(first_yes)&set(second_yes)))
-            yes_no = len(list(set(first_yes)-set(second_yes))) if len(list(set(first_yes)-set(second_yes))) > 0 else len(list(set(second_yes)-set(first_yes)))
-            no_yes = len(list(set(first_no)-set(second_yes))) if len(list(set(first_no)-set(second_yes))) >0 else len(list(set(second_yes)-set(first_no)))
-            no_no = len(list(set(first_no)&set(second_no)))
-            total = [yes_yes,yes_no,no_yes,no_no]
-
+                if (user.first_choice != None and user.second_choice != None):
+                    if user.first_choice == 'YES':
+                        first_yes.append(user.user_id)
+                        if user.second_choice == 'YES':
+                            second_yes.append(user.user_id)
+                            yes_yes.append(user.user_id)
+                        else:
+                            second_no.append(user.user_id)
+                            no_yes.append(user.user_id)
+                    else:
+                        first_no.append(user.user_id)
+                        if user.second_choice == 'YES':
+                            second_yes.append(user.user_id)
+                            no_yes.append(user.user_id)
+                        else:
+                            second_no.append(user.user_id)
+                            no_no.append(user.user_id)
+            total = [len(yes_yes),len(yes_no),len(no_yes),len(no_no)]
             sum_total = sum(total)
-            centre_circle=plt.Circle((0,0),0.50,fc='white')
+            
+            # graph
             plt.switch_backend('Agg') #to set the backend to a non-interactive one
+            centre_circle=plt.Circle((0,0),0.50,fc='white')
             plt.figure(figsize=(12,4))
             plt.subplot(131)
             plt.pie([len(first_yes),len(first_no)],labels=["yes(%d)" %(len(first_yes)),"no(%d)" %(len(first_no))],radius=0.9,shadow=True,startangle=90,explode=(0.0,0.1),colors=["blue","red"])
@@ -107,7 +113,7 @@ def post():
             plt.gcf()
             plt.gca().add_artist(centre_circle2)
             plt.subplot(133)
-            plt.pie(total,labels=["yes_yes(%d)" %yes_yes,"yes_no(%d)" %yes_no,"no_yes(%d)" %no_yes,"no_no(%d)"%no_no],radius=0.9,shadow=True,colors=['#ffadad', '#ffd6a5', '#fdffb6', '#caffbf'])
+            plt.pie(total,labels=["yes_yes(%d)" %len(yes_yes),"yes_no(%d)" %len(yes_no),"no_yes(%d)" %len(no_yes),"no_no(%d)"%len(no_no)],radius=0.9,shadow=True,colors=['#ffadad', '#ffd6a5', '#fdffb6', '#caffbf'])
             plt.title('Choices transition')
             plt.axis('equal')
             centre_circle3=plt.Circle((0,0),0.50,fc='white')
@@ -128,7 +134,7 @@ def post():
             db.session.commit()
             return jsonify({"result":"success"})
     else:
-        return redirect('/join')
+        return redirect('/login')
 
         
 @board.route("/post", methods=["DELETE"])
