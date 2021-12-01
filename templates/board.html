@@ -57,6 +57,11 @@
                         .then(function() {
                             window.location.reload()
                         })
+                } else {
+                    swal.fire("수정 실패!", "빈 내용으로 수정하실 수 없어요", "warning")
+                        .tent(function() {
+                            window.location.reload()
+                        })
                 }
 
             }
@@ -229,6 +234,8 @@
     </div>
 </div>
 <!-- 여백 -->
+<div class="container" style="height:30px"></div>
+{% endfor %}
 <div class="container" style="height:200px"></div>
 <!-- Footer -->
 <footer class="py-5 bg-dark">
@@ -236,7 +243,4 @@
         <h3 class="m-0 text-center text-white">V-Choice를 이용해주셔서 감사합니다.</h3>
     </div>
 </footer>
-
-{% endfor %}
-</div>
 {% endblock %}
