@@ -83,7 +83,7 @@ def post():
                             yes_yes.append(user.user_id)
                         else:
                             second_no.append(user.user_id)
-                            no_yes.append(user.user_id)
+                            yes_no.append(user.user_id)
                     else:
                         first_no.append(user.user_id)
                         if user.second_choice == 'YES':
