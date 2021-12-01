@@ -75,6 +75,8 @@ git checkout sprint
 code .
 ```
 
+ ### API 명세서
+
 <details>
 <summary>/join</summary>
 
