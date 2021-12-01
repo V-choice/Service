@@ -152,6 +152,8 @@ def update_post():
     
     data = Post.query.filter(Post.id==id,Post.author==author.user_id).first()
     data.content=content
+    if len(content) == 0:
+        return jsonify({'result':'fail'})
     db.session.commit()
     return jsonify({'result':'success'})
 
