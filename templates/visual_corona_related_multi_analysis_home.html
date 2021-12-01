@@ -112,6 +112,14 @@
             </select>
             <button class="btn btn-primary" type="submit">선택</button>
           </form>
+          {% if msg %}
+              <script>
+                  alert('선택옵션을 빠짐없이 골라주세요')
+              </script>
+              <div text-align: center;>
+                  <p> <mark><strong>{{msg}}</strong></mark> </p>
+              </div>
+          {% endif %}
         </div>
       </main>
     </div>

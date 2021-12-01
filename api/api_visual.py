@@ -52,7 +52,7 @@ def vidcnt():
             category_id = request.form['category_id']
             category_id_name = category_list[category_id]
         except:
-            msg = "정확한 값을 입력하세요"
+            msg = "정확하게 선택해주세요"
             return render_template('visual_video_count_home.html', category_list = category_list, msg=msg)
         category_id = request.form['category_id']
         category_id_name = category_list[category_id]
@@ -95,7 +95,7 @@ def compare_mean_views():
             category_id = request.form.get('category_id')
             category_id_name = category_list[category_id]
         except:
-            msg = "정확한 값을 입력하세요"
+            msg = "정확하게 선택해주세요"
             return render_template('visual_compare_mean_views_home.html', category_list = category_list, msg=msg)
         user_want_18 = kr18[kr18['category_id']==int(category_id)]
         user_want_20 = kr20[kr20['category_id']==int(category_id)]
@@ -131,7 +131,7 @@ def ratio_ch_vid():
             assert(0< int(label_num) < 15)
             label_num = int(label_num)
         except:
-            msg = "정확한 값을 입력하세요"
+            msg = "정확하게 선택해주세요"
             return render_template('visual_ratio_change_video_home.html', category_list = category_list, msg=msg)
 
         #데이터가공(views컬럼 필요없지만 나중에 views로 통계낼 수도 있을 경우 확장성 고려)
@@ -210,7 +210,7 @@ def multi_analysis():
             category_id = request.form['category_id']
             category_id_name = new_category_list[category_id]
         except:
-            msg = "정확한 값을 입력하세요"
+            msg = "정확하게 선택해주세요"
             return render_template('visual_multi_analysis_home.html', enumerate=enumerate, youtube_col_list=youtube_col_list, corona_col_list=corona_col_list, msg=msg, category_list=new_category_list)
         if int(category_id) == 0:
             #전체 카테고리인 경우
@@ -300,7 +300,7 @@ def corona_related_multi_analysis():
             assert(0< int(selection_2_num) < 6)
             selection_2_num = int(selection_2_num)
         except:
-            msg = "정확한 값을 입력하세요"
+            msg = "정확하게 선택해주세요"
             return render_template('visual_corona_related_multi_analysis_home.html', enumerate=enumerate, youtube_col_list=youtube_col_list, category_list=category_list, corona_col_list=corona_col_list, msg=msg)
         kr20_1=kr20[corona_related_filter]
         kr20_1.replace(0, np.nan)
@@ -346,7 +346,7 @@ def corona_category():
             category_id = request.form['category_id']
             category_id_name = category_list[category_id]
         except:
-            msg = "정확한 값을 입력하세요"
+            msg = "정확하게 선택해주세요"
             return render_template('visual_correlation_bokeh_home.html', category_list = category_list, msg=msg)
         category_id = request.form['category_id']
         category_id_name = category_list[category_id]
@@ -369,8 +369,11 @@ def corona_category():
 @visual.route('/sentiment-analysis', methods=['GET', 'POST'])
 def sentiment_analysis():
     if request.method == 'POST':
-        user_want = request.form['sentiment_data']
-        print(user_want)
+        try:
+            user_want = request.form['sentiment_data']
+        except:
+            msg = "정확하게 선택해주세요"
+            return render_template('visual_sentiment_analysis_home.html', msg=msg)
         return render_template('visual_sentiment_analysis_result.html', user_want=user_want)
     else:
         return render_template('visual_sentiment_analysis_home.html')
