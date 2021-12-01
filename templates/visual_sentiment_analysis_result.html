@@ -1,195 +1,146 @@
-{% extends 'layout.html' %}
-{% block content %}
+{% extends 'layout.html' %} {% block content %}
 <style>
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-  }
-
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
     }
-  }
+    
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
 </style>
 
 <head>
-  <!-- Custom styles for this template -->
-  <link href="../static/css/dashboard.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../static/css/dashboard.css" rel="stylesheet">
 </head>
+
 <body>
-  <div class="container-fluid">
-    <div class="row">
-      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-        <div class="position-sticky pt-3">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">
-                <span></span>
-                &nbsp;
-              </a>
-          </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/visual">
-                <span data-feather="home"></span>
-                Home - Visual
-              </a>
-              <li class="nav-link" aria-current="page" style='margin-left:20px; color:#534071; font-size:0.8rem;'>
-                👆 돌아가서 두번째 투표는<br> 👇 다른 그래프도 보려면
-              </li>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/vid-cnt">
-                <span data-feather="bar-chart-2"></span>
-                Video Count
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/comp-mean-views">
-                <span data-feather="bar-chart-2"></span>
-                Vidoe Views
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/ratio-ch-vid">
-                <span data-feather="bar-chart-2"></span>
-                Category Ratio
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/multi-analysis">
-                <span data-feather="layers"></span>
-                Multi Analysis - 1
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/corona-related-multi-analysis">
-                <span data-feather="layers"></span>
-                Multi Analysis - 2
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/correlation-bokeh">
-                <span data-feather="file"></span>
-                Confirmed & Category
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="/sentiment-analysis">
-                <span data-feather="file"></span>
-                Sentiment Analysis
-              </a>
-            </li>
-          </ul>
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">
+                                <span></span> &nbsp;
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/visual">
+                                <span data-feather="home"></span> Home - Visual
+                            </a>
+                            <li class="nav-link" aria-current="page" style='margin-left:20px; color:#534071; font-size:0.8rem;'>
+                                👆 돌아가서 두번째 투표는<br> 👇 다른 그래프도 보려면
+                            </li>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/vid-cnt">
+                                <span data-feather="bar-chart-2"></span> Video Count
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/comp-mean-views">
+                                <span data-feather="bar-chart-2"></span> Vidoe Views
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ratio-ch-vid">
+                                <span data-feather="bar-chart-2"></span> Category Ratio
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/multi-analysis">
+                                <span data-feather="layers"></span> Multi Analysis - 1
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/corona-related-multi-analysis">
+                                <span data-feather="layers"></span> Multi Analysis - 2
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/correlation-bokeh">
+                                <span data-feather="file"></span> Confirmed & Category
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/sentiment-analysis">
+                                <span data-feather="file"></span> Sentiment Analysis
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Youtube Trending 영상의 감정분석을 통해 코로나의 영향을 확인해보세요</h1>
+                </div>
+                <p> &nbsp; </p>
+                <div style='text-align:center;'>
+                    <h3> 감정분석 결과 </h3>
+                    {% if user_want == '1' %}
+                    <img src='../static/visual_image/cat_senti2.png' width="70%" height='auto'>
+                    <p>각 카테고리 별로 감정수치의 평균을 표현한 그래프입니다.<br> 감정에 해당하는 숫자는 아래와 같습니다.<br>
+                        <br> 긍정적 : 1<br> 중립적 : 0<br> 부정적 : -1<br>
+                        <br> 감정수치는 -1에서 1 사이로 표시되며 1에 가까울수록 긍정, -1에 가까울수록 부정입니다.</p>
+                    <br> 위 그래프에서 가장 긍정적인 카테고리의 영상은 Comedy이며, <br> 가장 부정적인 카테고리의 영상은 News&Politics 인 것을 확인할 수 있습니다.</p>
+                    {% elif user_want == '2' %}
+                    <img src='../static/visual_image/changes2.png' width="60%" height='auto'>
+                    <p>유튜브 트렌딩 비디오 평균 감정수치와 코로나19 누적 확진자 수 추이 그래프입니다.<br>
+                        <br> 기간: 2020년 08월 12일 ~ 2021년 11월 08일<br>
+                        <br> 위 그래프에서 보라색 선과 왼쪽 눈금은 감정수치를, <br> 주황색 선과 오른쪽 눈금은 코로나19 누적 확진자의 수치를 의미합니다.<br> 감정수치는 -1에서 1 사이로 표시되며 1에 가까울수록 긍정, -1에 가까울수록 부정입니다.</p>
+                    {% elif user_want == '3' %}
+                    <img src='../static/visual_image/new_senti2.png' width="55%" height='auto'>
+                    <p>유튜브 트렌트 비디오 감정수치와 코로나19 신규 확진수 상관관계 그래프입니다.<br>
+                        <br> 상관계수(corr) = 0.397469 <br>
+                        <br> 감정수치는 -1에서 1 사이로 표시되며 1에 가까울수록 긍정, -1에 가까울수록 부정입니다.<br> 상관계수는 -1에서 1 사이 값을 가지고 있으며, 1에 가까울수록 양의 상관관계, <br> -1에 가까울수록 음의 상관관계, 0에 가까울수록 상관관계가 없음을 의미합니다.<br>
+                        <br> 위 그래프에서 상관계수는 약 0.40로 약한 양의 상관관계를 나타내고 있습니다.</p>
+                    {% elif user_want == '4' %}
+                    <img src='../static/visual_image/total_senti2.png' width="55%" height='auto'>
+                    <p>유튜브 트렌트 비디오 감정수치와 코로나19 누적 확진수 상관관계 그래프입니다.<br>
+                        <br> 상관계수(corr) = 0.388647 <br>
+                        <br> 감정수치는 -1에서 1 사이로 표시되며 1에 가까울수록 긍정, -1에 가까울수록 부정입니다.<br> 상관계수는 -1에서 1 사이 값을 가지고 있으며, 1에 가까울수록 양의 상관관계, <br> -1에 가까울수록 음의 상관관계, 0에 가까울수록 상관관계가 없음을 의미합니다.<br>
+                        <br> 위 그래프에서 상관계수는 약 0.39로 약한 양의 상관관계를 나타내고 있습니다.</p>
+                    {% elif user_want == '5' %}
+                    <img src='../static/visual_image/pos_neg2.png' width="55%" height='auto'>
+                    <p>코로나19 발벙 전후 긍정적/부정적 비디오 제목의 비율 그래프입니다.<br>
+                        <br> Rate = 긍정적인 제목을 가진 트렌딩 비디오 수 / 부정적인 제목을 가진 트렌딩 비디오 수 <br>
+                        <br> 위 그래프에서 코로나19 발병 전 비율은 약 0.94이며, 코로나19 발병 이후 비율은 약 1.44로,<br> 부정적인 비디오 수에 비해 긍정적인 비디오의 수가 증가하였음을 알 수 있습니다.</p>
+                    {% else %}
+                    <img src='../static/visual_image/sentiment-1.png' width="70%" height='auto'>
+                    <p> &nbsp; </p>
+                    <p><strong>Before &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </strong><br> 코로나19 이전 세 가지 감정에 대한 상위 7개 카테고리의 수치를 나타낸 그래프입니다.<br>
+                        <br> 긍정적 : 파란색<br> 중립적 : 흰색<br> 부정적 : 빨간색<br>
+                        <br> 긍정적인 제목을 가진 상위 7개 카테고리 중 Music은 순위권 밖으로 벗어났음을 알 수 있습니다.<br> 중립적인 제목을 가진 상위 7개 카테고리 중 Gaming은 순위권 밖으로 벗어났음을 알 수 있습니다.<br> 부정적인 제목을 가진 상위 7개 카테고리 중 Music은 순위권 밖으로 벗어났음을 알 수 있습니다.<br>
+                        <br> 7개의 카테고리 중 Entertainment에서 긍정적과 중립적이 가장 많으며, <br> News & Politics에서 부정적이 가장 많음을 알 수 있습니다.</p>
+                    <p> &nbsp; </p>
+                    <p> &nbsp; </p>
+                    <p> &nbsp; </p>
+                    <p> &nbsp; </p>
+                    <img src='../static/visual_image/sentiment-2.png' width="70%" height='auto'>
+                    <p> &nbsp; </p>
+                    <p><strong>After &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </strong><br> 코로나19 이후 세 가지 감정에 대한 상위 7개 카테고리의 수치를 나타낸 그래프입니다.<br>
+                        <br> 긍정적 : 파란색<br> 중립적 : 흰색<br> 부정적 : 빨간색<br>
+                        <br> 긍정적인 제목을 가진 상위 7개 카테고리 중 News & Politics은 순위권 밖으로 벗어났음을 알 수 있습니다.<br> 중립적인 제목을 가진 상위 7개 카테고리 중 Howto & Style은 순위권 밖으로 벗어났음을 알 수 있습니다.<br> 부정적인 제목을 가진 상위 7개 카테고리 중 Music은 순위권 밖으로 벗어났음을 알 수 있습니다.<br>
+                        <br> 7개의 카테고리 중 Entertainment에서 긍정적과 중립적, 부정적 세 가지 감정 모두가 <br> 1위를 차지하고 있음을 알 수 있습니다.</p>
+                    {% endif %}
+                    <p> &nbsp; </p>
+                    <p> &nbsp; </p>
+                    <p> &nbsp; </p>
+                </div>
+            </main>
         </div>
-      </nav>
-  
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">Youtube Trending 영상의 감정분석을 통해 코로나의 영향을 확인해보세요</h1>          
-        </div>
-        <p> &nbsp; </p>
-        <div style='text-align:center;'>
-          <h3> 감정분석 결과 </h3>
-            {% if user_want == '1' %}
-              <img src='../static/visual_image/cat_senti2.png' width="70%" height='auto'>
-              <p>각 카테고리 별로 감정수치의 평균을 표현한 그래프입니다.<br>
-              감정에 해당하는 숫자는 아래와 같습니다.<br>
-              <br>
-              긍정적 : 1<br>
-              중립적 : 0<br>
-              부정적 : -1<br>
-              <br>
-              감정수치는 -1에서 1 사이로 표시되며 1에 가까울수록 긍정, -1에 가까울수록 부정입니다.</p>
-              <br>
-              위 그래프에서 가장 긍정적인 카테고리의 영상은 Comedy이며, <br>
-              가장 부정적인 카테고리의 영상은 News&Politics 인 것을 확인할 수 있습니다.</p>
-            {% elif user_want == '2' %}
-              <img src='../static/visual_image/changes2.png' width="60%" height='auto'>
-              <p>유튜브 트렌딩 비디오 평균 감정수치와 코로나19 누적 확진자 수 추이 그래프입니다.<br>
-              <br>
-              기간: 2020년 08월 12일 ~ 2021년 11월 08일<br>
-              <br>
-              위 그래프에서 보라색 선과 왼쪽 눈금은 감정수치를, <br>
-              주황색 선과 오른쪽 눈금은 코로나19 누적 확진자의 수치를 의미합니다.<br>
-              감정수치는 -1에서 1 사이로 표시되며 1에 가까울수록 긍정, -1에 가까울수록 부정입니다.</p>
-            {% elif user_want == '3' %}
-              <img src='../static/visual_image/new_senti2.png' width="55%" height='auto'>
-              <p>유튜브 트렌트 비디오 감정수치와 코로나19 신규 확진수 상관관계 그래프입니다.<br>
-              <br>
-              상관계수(corr) = 0.397469 <br>
-              <br>
-              감정수치는 -1에서 1 사이로 표시되며 1에 가까울수록 긍정, -1에 가까울수록 부정입니다.<br>
-              상관계수는 -1에서 1 사이 값을 가지고 있으며, 1에 가까울수록 양의 상관관계, <br> 
-              -1에 가까울수록 음의 상관관계, 0에 가까울수록 상관관계가 없음을 의미합니다.<br>
-              <br>
-              위 그래프에서 상관계수는 약 0.40로 약한 양의 상관관계를 나타내고 있습니다.</p>
-            {% elif user_want == '4' %}
-              <img src='../static/visual_image/total_senti2.png' width="55%" height='auto'>
-              <p>유튜브 트렌트 비디오 감정수치와 코로나19 누적 확진수 상관관계 그래프입니다.<br>
-              <br>
-              상관계수(corr) = 0.388647 <br>
-              <br>
-              감정수치는 -1에서 1 사이로 표시되며 1에 가까울수록 긍정, -1에 가까울수록 부정입니다.<br>
-              상관계수는 -1에서 1 사이 값을 가지고 있으며, 1에 가까울수록 양의 상관관계, <br> 
-              -1에 가까울수록 음의 상관관계, 0에 가까울수록 상관관계가 없음을 의미합니다.<br>
-              <br>
-              위 그래프에서 상관계수는 약 0.39로 약한 양의 상관관계를 나타내고 있습니다.</p>
-            {% elif user_want == '5' %}
-              <img src='../static/visual_image/pos_neg2.png' width="55%" height='auto'>
-              <p>코로나19 발벙 전후 긍정적/부정적 비디오 제목의 비율 그래프입니다.<br>
-              <br>
-              Rate = 긍정적인 제목을 가진 트렌딩 비디오 수 / 부정적인 제목을 가진 트렌딩 비디오 수 <br>
-              <br>
-              위 그래프에서 코로나19 발병 전 비율은 약 0.94이며, 코로나19 발병 이후 비율은 약 1.44로,<br>
-              부정적인 비디오 수에 비해 긍정적인 비디오의 수가 증가하였음을 알 수 있습니다.</p>
-            {% else %}
-              <img src='../static/visual_image/sentiment_1.png' width="70%" height='auto'>
-              <p> &nbsp; </p>
-              <p><strong>Before &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </strong><br>
-                코로나19 이전 세 가지 감정에 대한 상위 7개 카테고리의 수치를 나타낸 그래프입니다.<br>
-                <br>
-                긍정적 : 파란색<br>
-                중립적 : 흰색<br>
-                부정적 : 빨간색<br>
-                <br>
-                긍정적인 제목을 가진 상위 7개 카테고리 중 Music은 순위권 밖으로 벗어났음을 알 수 있습니다.<br>
-                중립적인 제목을 가진 상위 7개 카테고리 중 Gaming은 순위권 밖으로 벗어났음을 알 수 있습니다.<br>
-                부정적인 제목을 가진 상위 7개 카테고리 중 Music은 순위권 밖으로 벗어났음을 알 수 있습니다.<br>
-                <br>
-                7개의 카테고리 중 Entertainment에서 긍정적과 중립적이 가장 많으며, <br>
-                News & Politics에서 부정적이 가장 많음을 알 수 있습니다.</p>
-              <p> &nbsp; </p>
-              <p> &nbsp; </p>
-              <p> &nbsp; </p>
-              <p> &nbsp; </p>
-              <img src='../static/visual_image/sentiment_2.png' width="70%" height='auto'>
-              <p> &nbsp; </p>
-              <p><strong>After &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </strong><br>
-                코로나19 이후 세 가지 감정에 대한 상위 7개 카테고리의 수치를 나타낸 그래프입니다.<br>
-                <br>
-                긍정적 : 파란색<br>
-                중립적 : 흰색<br>
-                부정적 : 빨간색<br>
-                <br>
-                긍정적인 제목을 가진 상위 7개 카테고리 중 News & Politics은 순위권 밖으로 벗어났음을 알 수 있습니다.<br>
-                중립적인 제목을 가진 상위 7개 카테고리 중 Howto & Style은 순위권 밖으로 벗어났음을 알 수 있습니다.<br>
-                부정적인 제목을 가진 상위 7개 카테고리 중 Music은 순위권 밖으로 벗어났음을 알 수 있습니다.<br>
-                <br>
-                7개의 카테고리 중 Entertainment에서 긍정적과 중립적, 부정적 세 가지 감정 모두가 <br>
-                1위를 차지하고 있음을 알 수 있습니다.</p>
-            {% endif %}
-          <p> &nbsp; </p>
-          <p> &nbsp; </p>
-          <p> &nbsp; </p>
-        </div>
-      </main>
     </div>
-  </div>
-  <script src="../static/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="../static/js/dashboard.js"></script>
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+    <script src="../static/js/dashboard.js"></script>
 </body>
 {% endblock %}
