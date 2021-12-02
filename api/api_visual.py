@@ -371,6 +371,7 @@ def sentiment_analysis():
     if request.method == 'POST':
         try:
             user_want = request.form['sentiment_data']
+            assert len(user_want) == 1, 'error'
         except:
             msg = "정확하게 선택해주세요"
             return render_template('visual_sentiment_analysis_home.html', msg=msg)
