@@ -1,17 +1,65 @@
+
+
 # 유튜브로 바라본 v-choice
 
-## 개발환경
+바이러스가 바꿔놓은 우리의 유튜브 초이스
 
-- window
-- flask 2.0.2
+## 프로젝트 구성 안내
 
-## 동작 방식
+- 코로나 상황 관련 변수(일일확진자, 누적확진자, 일자별 확진자 등)와 유튜브 데이터(조회수, 카테고리, 제목, 좋아요 수/싫어요 수 등)와의 관계 시각화
+  -  다른 변수가 아닌 코로나 상황과의 상관 관계 검증
+- 사용자의 데이터 선택에 대한 인터렉티브 시각화(워드클라우드, matplotlib, seaborn, bokeh)
+- 인사이트를 공유하고 피드백을 남길 수 있는 댓글창
 
-1. app.py 실행으로 
-2. 시각화 데이터 및 서비스
+## 1. 프로젝트 소개
+  
+- 사용 데이터
+    1. 코로나 이후(20-21년도) 유튜브 데이터 : kaggle [YouTube Trending Video Dataset (updated daily)](https://www.kaggle.com/rsrishav/youtube-trending-video-dataset)
+    2. 코로나 이전(17-19년도) 유튜브 데이터 : kaggle [Trending YouTube Video Statistics](https://www.kaggle.com/datasnaek/youtube-new)
+    3. 코로나 관련 데이터 : 공공포털사이트(20년도부터 최근까지)
+  </br>
+- 스택
+  - 백엔드 스택 : 
+  <img src="https://img.shields.io/badge/Python-3766AB?style=flat-square&logo=Python&logoColor=white"/></a>
+  <img src="https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=jupyter&logoColor=white"/></a>
+  <img src="https://img.shields.io/badge/Mysql-E6B91E?style=flat-square&logo=MySql&logoColor=white"/></a>
+  <img src="https://img.shields.io/badge/Flask-29B5E8?style=flat-square&logo=Flask&logoColor=white"/></a>
+  <img src="https://img.shields.io/badge/aws-333664?style=flat-square&logo=amazon-aws&logoColor=white"/></a>
+  <img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=Ubuntu&logoColor=white"/></a>
+  - 프론트엔드 스택 : Jinja_template, J-query, bootstrap,
+  <img src="https://img.shields.io/badge/Jinja-B41717?style=flat-square&logo=Jinja&logoColor=white"/></a>
+  <img src="https://img.shields.io/badge/JQuery-0769AD?style=flat-square&logo=JQuery&logoColor=white"/></a>
+  <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=Bootstrap&logoColor=white"/></a>
+  - 라이브러리 : 
+  <img src="https://img.shields.io/badge/Pandas-FF6600?style=flat-square&logo=Pandas&logoColor=white"/></a>
+  <img src="https://img.shields.io/badge/Numpy-013243?style=flat-square&logo=Numpy&logoColor=white"/></a>
+  <img src="https://img.shields.io/badge/matplotlib-125345?style=flat-square&logo=matplotlib&logoColor=white"/></a>
+  <img src="https://img.shields.io/badge/seaborn-00CCBB?style=flat-square&logo=seaborn&logoColor=white"/></a>
+  <img src="https://img.shields.io/badge/sweetalert2-FEC111?style=flat-square&logo=sweetalert2&logoColor=white"/></a>
 
 
- ### API 명세서
+
+## 2. 프로젝트 목표
+
+코로나19 이후 OTT(온라인동영상서비스)는 1100% 이상의 성장세를 보였다. \
+OTT 중에서도 유튜브는 66배의 폭발적인 성장과 국내 동영상 플랫폼 1위를 유지하고 있다. \
+이러한 유튜브에서 데이터를 수집하고, 사람들은 팬데믹 시기를 어떻게 보내고 있는가를 키워드로 분석하려 한다.
+
+## 3. 프로젝트 구성도
+![](/V-choice_UI_UX정의서.jpg)
+
+## 4. 프로젝트 팀원 역할 분담
+
+| 이름 | 담당 업무 |
+| ------ | ------ |
+| 김준수 | 팀장/프론트엔드 |
+| 고동성 | 백엔드/데이터 분석 |
+| 고주연 | 프론트엔드/데이터 분석 |
+| 김방현 | 백엔드/데이터 분석 |
+| 김성규 | 백엔드/데이터 분석 |
+| 최청현 | 백엔드/데이터 분석 |
+
+## 5. API 명세서
 
 <details>
 <summary>/join</summary>
@@ -73,9 +121,7 @@
 </details>
 <details>
 <summary>
-
 <span dir="">/comp-mean-views</span>
-
 </summary>
 
 | method | description | parameters |
@@ -94,9 +140,7 @@
 </details>
 <details>
 <summary>
-
 <span dir="">/multi-analysis</span>
-
 </summary>
 
 | method | description | parameters |
@@ -106,9 +150,7 @@
 </details>
 <details>
 <summary>
-
 <span dir="">/corona-related-multi-analysis</span>
-
 </summary>
 
 | method | description | parameters |
@@ -119,9 +161,7 @@
 </details>
 <details>
 <summary>
-
 <span dir="">/correlation-bokeh</span>
-
 </summary>
 
 | method | description | parameters |
@@ -131,9 +171,7 @@
 </details>
 <details>
 <summary>
-
 <span dir="">/sentiment-analysis</span>
-
 </summary>
 
 | method | description | parameters |
@@ -141,3 +179,14 @@
 | post | 감정분석 결과 그래프 | 'user_want' |
 
 </details>
+
+## 5. 버전
+
+- 1.0.0
+
+### 참조
+
+- [Top Trending Videos on YouTube in 2021](https://russelllim22.medium.com/d576fa1f4c34)
+- [한국어 감성사전](https://github.com/park1200656/KnuSentiLex/find/c95a8a9bcb78ef92e3f8ddd277abaf31451d9f23)
+
+
