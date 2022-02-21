@@ -26,7 +26,7 @@
   <img src="https://img.shields.io/badge/Flask-29B5E8?style=flat-square&logo=Flask&logoColor=white"/></a>
   <img src="https://img.shields.io/badge/aws-333664?style=flat-square&logo=amazon-aws&logoColor=white"/></a>
   <img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=Ubuntu&logoColor=white"/></a>
-  - 프론트엔드 스택 : Jinja_template, J-query, bootstrap,
+  - 프론트엔드 스택 :
   <img src="https://img.shields.io/badge/Jinja-B41717?style=flat-square&logo=Jinja&logoColor=white"/></a>
   <img src="https://img.shields.io/badge/JQuery-0769AD?style=flat-square&logo=JQuery&logoColor=white"/></a>
   <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=Bootstrap&logoColor=white"/></a>
@@ -44,20 +44,48 @@
 코로나19 이후 OTT(온라인동영상서비스)는 1100% 이상의 성장세를 보였다. \
 OTT 중에서도 유튜브는 66배의 폭발적인 성장과 국내 동영상 플랫폼 1위를 유지하고 있다. \
 이러한 유튜브에서 데이터를 수집하고, 사람들은 팬데믹 시기를 어떻게 보내고 있는가를 키워드로 분석하려 한다.
-
+<!-- 
 ## 3. 프로젝트 구성도
 ![image]('https://github.com/V-choice/Service/issues/1#issue-1145498485')
-
+ -->
+ 
 ## 4. 프로젝트 팀원 역할 분담
 
-| 이름 | 담당 업무 |
-| ------ | ------ |
-| 김준수 | 팀장/프론트엔드 |
-| 고동성 | 백엔드/데이터 분석 |
-| 고주연 | 프론트엔드/데이터 분석 |
-| 김방현 | 백엔드/데이터 분석 |
-| 김성규 | 백엔드/데이터 분석 |
-| 최청현 | 백엔드/데이터 분석 |
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/surdarla">
+        <img src="https://github.com/V-choice/Service/blob/main/static/image/junsu.jpeg?raw=true" height="100px;" alt=""/><br />
+          <sub><b>김준수 | 팀장</b></sub>
+              </a><br />
+    <td align="center">
+      <a href="https://github.com/">
+        <img src="https://github.com/V-choice/Service/blob/main/static/image/Dongsung.jpeg?raw=true" height="100px;" alt=""/><br />
+          <sub><b>고동성</b></sub>
+              </a><br />
+    <td align="center">
+      <a href="https://github.com/">
+        <img src="https://github.com/V-choice/Service/blob/main/static/image/juyeon.jpeg?raw=true" height="100px;" alt=""/><br />
+          <sub><b>고주연</b></sub>
+              </a><br />
+    <td align="center">
+      <a href="https://github.com/">
+        <img src="https://github.com/V-choice/Service/blob/main/static/image/Banghyun.jpeg?raw=true" height="100px;" alt=""/><br />
+          <sub><b>김방현</b></sub>
+              </a><br />
+    <td align="center">
+      <a href="https://github.com/LearninMC">
+        <img src="https://github.com/V-choice/Service/blob/main/static/image/Sungkyu.jpeg?raw=true" height="100px;" alt=""/><br />
+          <sub><b>김성규</b></sub>
+              </a><br />
+    <td align="center">
+      <a href="https://github.com/">
+        <img src="https://github.com/V-choice/Service/blob/main/static/image/Chunghyun.jpeg?raw=true" height="100px;" alt=""/><br />
+          <sub><b>최청현</b></sub>
+              </a><br />
+  <tr>
+</table>
+
 
 ## 5. API 명세서
 
